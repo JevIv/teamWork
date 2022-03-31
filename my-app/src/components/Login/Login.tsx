@@ -9,8 +9,8 @@ export const Login = () => {
             <TextField id="standard-basic" label="Password" type="password" variant="standard" /><br/>
             <Button style={{minWidth: '195px', margin: '10px'}}
                     variant="outlined">Sign in</Button><br/>
-            <FormControlLabel value="true" control={<Radio />} label="Remember me" />
-
+            <FormControlLabel value="true" control={<Radio />} label="Remember me" /><br/>
+            <Button style={{fontSize: 'x-small', color: '#BBBBBB'}} variant="text">Forgot Password</Button>
         </div>
     );
 };
