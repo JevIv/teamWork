@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/teamWork/static/css/main.b57dbb80.css",
-    "main.js": "/teamWork/static/js/main.de926476.js",
+    "main.js": "/teamWork/static/js/main.72a72b64.js",
     "static/js/787.28cb0dcd.chunk.js": "/teamWork/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/teamWork/index.html",
     "main.b57dbb80.css.map": "/teamWork/static/css/main.b57dbb80.css.map",
-    "main.de926476.js.map": "/teamWork/static/js/main.de926476.js.map",
+    "main.72a72b64.js.map": "/teamWork/static/js/main.72a72b64.js.map",
     "787.28cb0dcd.chunk.js.map": "/teamWork/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b57dbb80.css",
-    "static/js/main.de926476.js"
+    "static/js/main.72a72b64.js"
   ]
 }
