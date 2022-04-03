@@ -1,0 +1,12 @@
+.input{
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    &::after{
+        border: none;
+        border-bottom: 1px solid black;
+    }
+}
+.default{
+    color: blue
+}

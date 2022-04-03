@@ -1,0 +1,19 @@
+.block{
+    &_sing{
+        margin: 0 auto;
+    display:flex;
+    flex-direction: column;
+    max-width: 425px;
+    border-radius: 8px;
+    background-color:rgba(157, 199, 199, 0.11);
+    input{
+        margin: 5px 35px;
+    }
+    }
+    &_btn{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 80px;
+        margin-bottom: 60px;
+    }
+}
