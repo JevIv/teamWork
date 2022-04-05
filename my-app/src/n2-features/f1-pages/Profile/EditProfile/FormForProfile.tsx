@@ -1,6 +1,6 @@
 import {useFormik} from 'formik';
 import {Button, TextField} from '@mui/material';
-import s from '../../../n1-main/m1-ui/App.module.scss';
+import s from '../../../../n1-main/m1-ui/App.module.scss';
 import React from 'react';
 import style from './FormStyle.module.scss';
 
