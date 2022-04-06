@@ -17,11 +17,11 @@ export const RoutesFunc = () => {
     return (
         <>
             <Routes>
-                {/* <Route path="/reset-pass/" element={<PasswordReset />}/>
+                {/*<Route path="/reset-pass/" element={<PasswordReset />}/>
                 <Route path="/new-pass/" element={<NewPassword />}/>
                 <Route path="/404/" element={<PageNotFound />}/>
                 <Route path="/profile/" element={<Profile />}/>
-                <Route path="/login/" element={<Login />}/> */}
+                <Route path="/login/" element={<Login />}/>*/}
                 {RoutesPagesList}
             </Routes>
         </>
