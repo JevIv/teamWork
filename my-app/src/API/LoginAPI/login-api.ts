@@ -21,13 +21,14 @@ export type LoginParamsType ={
 type ResponseType = {
     _id: string;
     email: string;
+    rememberMe: boolean;
+    isAdmin: boolean;
     name: string;
-    avatar?: string;
+    verified: boolean;
     publicCardPacksCount: number;
     created: Date;
     updated: Date;
-    isAdmin: boolean;
-    verified: boolean;
-    rememberMe: boolean;
     error?: string;
+    token: string;
+    tokenDeathTime: number;
 }
