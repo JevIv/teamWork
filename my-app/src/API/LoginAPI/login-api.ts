@@ -26,15 +26,12 @@ type ResponseType = {
     _id: string;
     email: string;
     name: string;
-    token: string
-
+    token: string;
     avatar: string;
-
     publicCardPacksCount: number;
-
+    //дату поменял на string
     created: string;
     updated: string;
-
     isAdmin: boolean;
     verified: boolean;
     rememberMe: boolean;

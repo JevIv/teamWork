@@ -28,7 +28,8 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
 export const setProfile = (profile: UserType) => ({type: 'SET_PROFILE', profile}) as const
 
 
-export const updateProfile = (updatedProfile: {name: string, avatar: ''}) => async (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsProfileType>) => {
+//не забыть поправить св-во avatar
+export const updateProfile = (updatedProfile: {name: string, avatar?: string}) => async (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsProfileType>) => {
     try {
         const res = await profileAPI.updateUser(updatedProfile)
         dispatch(setProfile(res.updatedUser))

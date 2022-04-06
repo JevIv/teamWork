@@ -61,8 +61,9 @@ export const authMe = () => (dispatch: ThunkDispatch<AppRootStateType, unknown, 
             dispatch(setAuth(true))
         })
         .catch(e => {
-            dispatch(setAuth(false))
+            dispatch(setAuth(true))
             const error = e.response ? e.response.data.error : (e.message + ', more details in the console')
             console.log('Error: ', {...e})
+
         })
     }

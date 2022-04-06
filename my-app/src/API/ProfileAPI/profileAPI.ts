@@ -6,7 +6,7 @@ export const instance = axios.create({
 })
 
 export const profileAPI = {
-    updateUser(data: {name: string, avatar: string}){
+    updateUser(data: {name: string, avatar?:string}){
         return instance.put<ResponseType>('auth/me', data)
             .then(res => res.data)
     }
