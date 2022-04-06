@@ -4,14 +4,28 @@ import style from './ProfileStyles.module.css'
 import {CardsInfo} from './ProfileComponents/CardsInfo';
 import {UserInfo} from './ProfileComponents/UserInfo';
 import {MainBar} from './ProfileComponents/MainBar';
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from '../../../store/store';
+import {UserType} from '../../../API/ProfileAPI/profileAPI';
+import {Navigate, useNavigate} from 'react-router-dom';
 
 
 export const Profile = () => {
+
+    const profile = useSelector<AppRootStateType, UserType>(state=> state.profile.profileInfo as UserType)
+    const initialized = useSelector<AppRootStateType, boolean>(state => state.login.isAuth)
+
+    let navigate = useNavigate();
+
+    if (!initialized) {
+        return <Navigate to='/login'/>
+    }
+
     return (
         <div className={style.container}>
             <div className={style.optionsMenu}>
                 <div className={style.userInfo}>
-                    <UserInfo/>
+                    <UserInfo profile={profile}/>
                 </div>
 
                 <div>

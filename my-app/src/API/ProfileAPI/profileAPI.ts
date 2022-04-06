@@ -6,8 +6,9 @@ export const instance = axios.create({
 })
 
 export const profileAPI = {
-    updateUser(data:UpdateUserType){
+    updateUser(data: {name: string, avatar: string}){
         return instance.put<ResponseType>('auth/me', data)
+            .then(res => res.data)
     }
 }
 
@@ -26,9 +27,6 @@ export type UserType = {
     publicCardPacksCount: number,
     created: string,
     updated: string,
-    __v: number,
-    token: string,
-    tokenDeathTime: number,
     avatar: string
 }
 

@@ -3,17 +3,31 @@ import {Button, TextField} from '@mui/material';
 import s from '../../../../n1-main/m1-ui/App.module.scss';
 import React from 'react';
 import style from './FormStyle.module.scss';
+import {UserType} from '../../../../API/ProfileAPI/profileAPI';
+import {useDispatch} from 'react-redux';
+import {updateProfile} from '../../../../store/s1-reducer/profile-reducer';
 
 type ErrorType = {
     nickname?: string;
     email?: string;
 }
-export const FormForProfile = () => {
+
+type FormForProfileType = {
+    profile: UserType
+}
+
+export const FormForProfile = (props: FormForProfileType) => {
+
+    const dispatch = useDispatch()
+
+    const {
+        profile,
+    } = props
 
     let formik = useFormik({
         initialValues: {
-            nickname: '',
-            email: '',
+            nickname: profile.name,
+            email: profile.email,
         },
         validate: (value) => {
             const errors: ErrorType = {};
@@ -30,10 +44,12 @@ export const FormForProfile = () => {
             return errors
         },
         onSubmit: (values) => {
-            console.log('click')
-            setTimeout(() => {
-                alert(JSON.stringify(values));
-            }, 400);
+            // console.log('click')
+            // setTimeout(() => {
+            //     alert(JSON.stringify(values));
+            // }, 400);
+            const params = {name: values.nickname, avatar: ''}
+            dispatch(updateProfile({name: values.nickname, avatar: ''}))
         }
     })
 

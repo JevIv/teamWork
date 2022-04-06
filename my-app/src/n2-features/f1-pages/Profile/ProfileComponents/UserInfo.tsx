@@ -1,7 +1,15 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
+import {UserType} from '../../../../API/ProfileAPI/profileAPI';
 
-export const UserInfo = () => {
+type UserInfoType = {
+    profile: UserType
+}
+
+export const UserInfo = (props: UserInfoType) => {
+    const {
+        profile
+    } = props
 
     let navigate = useNavigate();
 
@@ -12,7 +20,7 @@ export const UserInfo = () => {
     return (
         <>
             <img src="" alt='Photo'/>
-            <div>Name Name</div>
+            <div>{profile.name}</div>
             <span>Front-end dev</span>
             <button onClick={editProfileHandler}>Edit Profile</button>
             {/*<Button>Edit Profile</Button>*/}

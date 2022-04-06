@@ -10,6 +10,10 @@ export const authAPI = {
     login(data: LoginParamsType){
         return instance.post<ResponseType>('auth/login', data)
     },
+    authMe() {
+        return instance.post('auth/me')
+            .then(res => res.data)
+    }
 }
 
 export type LoginParamsType ={
@@ -22,10 +26,15 @@ type ResponseType = {
     _id: string;
     email: string;
     name: string;
-    avatar?: string;
+    token: string
+
+    avatar: string;
+
     publicCardPacksCount: number;
-    created: Date;
-    updated: Date;
+
+    created: string;
+    updated: string;
+
     isAdmin: boolean;
     verified: boolean;
     rememberMe: boolean;
