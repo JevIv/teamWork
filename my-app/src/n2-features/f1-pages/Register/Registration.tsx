@@ -1,17 +1,11 @@
-// import React from 'react';
-// import { Button } from '../../../n0-common/c1-iu/button/Button';
-// import { Input } from '../../../n0-common/c1-iu/input/Input';
-// import style from './Registration.module.scss';
-// import s from '../../../n1-main/m1-ui/App.module.scss'
-
-
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Form, FormikProvider, useFormik } from 'formik';
 import * as yup from 'yup';
-import { Button, TextField } from '@mui/material';
-
+import { Button, TextField, withStyles } from '@mui/material';
+import style from './Registration.module.scss';
+import s from '../../../n1-main/m1-ui/App.module.scss'
 
 const validationSchema = yup.object({
   email: yup
@@ -48,10 +42,11 @@ export const Registration = () => {
 
   return (
     <FormikProvider value={formik}>
-      <Form onSubmit={formik.handleSubmit}>
+      <Form onSubmit={formik.handleSubmit} className={s.block_sing}>
         <h1>Sign Up</h1>
-        
+
         <TextField
+          className={s.input}
           id="email"
           name="email"
           label="Email"
@@ -60,8 +55,9 @@ export const Registration = () => {
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
         />
-        
+
         <TextField
+          className={s.input}
           id="password"
           name="password"
           label="Password"
@@ -73,6 +69,7 @@ export const Registration = () => {
         />
         
         <TextField
+          className={s.input}
           id="confirmPassword"
           name="confirmPassword"
           label="Confirm Password"
@@ -82,13 +79,14 @@ export const Registration = () => {
           error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
           helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
         />
-        
-        <Button variant="outlined" type="reset"> 
-          cancel
-        </Button>
-        <Button color="primary" variant="contained" type="submit">
-          Submit
-        </Button>
+        <div className={s.block_btn}>
+          <Button className={s.email} variant="outlined" type="reset">
+            Cancel
+          </Button>
+          <Button color="primary" variant="contained" type="submit">
+            Registration
+          </Button>
+        </div>   
       </Form>
     </FormikProvider>
   );
@@ -96,3 +94,5 @@ export const Registration = () => {
 
 ReactDOM.render(<Registration />, document.getElementById('root'));
 
+
+export default withStyles(s)
