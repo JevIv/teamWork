@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { PageNotFound } from "../../../n2-features/f1-pages/404page/Error404";
-import { Login } from "../../../n2-features/f1-pages/Login/Login";
-import { Profile } from "../../../n2-features/f1-pages/Profile/Profile";
+import { PageNotFound } from "../../../../n2-features/f1-pages/p1-404page/Error404";
+import { Login } from "../../../../n2-features/f1-pages/Login/Login";
+import { Profile } from "../../../../n2-features/f1-pages/p3-profile/Profile";
 import { pages, PagesType } from "./Pages";
 
 

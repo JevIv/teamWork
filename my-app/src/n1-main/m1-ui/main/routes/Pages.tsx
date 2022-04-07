@@ -1,10 +1,10 @@
 import React, { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
-import { Login } from "../../../n2-features/f1-pages/Login/Login";
-import { SetPassword } from "../../../n2-features/f1-pages/Password/SetPassword";
-import { Profile } from "../../../n2-features/f1-pages/Profile/Profile";
-import { Registration } from "../../../n2-features/f1-pages/Register/Registration";
-import { PageNotFound } from "../../../n2-features/f1-pages/404page/Error404";
+import { Login } from "../../../../n2-features/f1-pages/Login/Login";
+import { SetPassword } from "../../../../n2-features/f1-pages/p2-password/SetPassword";
+import { Profile } from "../../../../n2-features/f1-pages/p3-profile/Profile";
+import { Registration } from "../../../../n2-features/f1-pages/p4-register/Registration";
+import { PageNotFound } from "../../../../n2-features/f1-pages/p1-404page/Error404";
 
 export const PATH = {
     LOGIN:"/login/",
