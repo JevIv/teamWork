@@ -1,6 +1,8 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
 import {UserType} from '../../../../API/ProfileAPI/profileAPI';
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from '../../../../store/store';
 // import userAva from '../../../../Assets/rick_morty_PNG32.png'
 
 type UserInfoType = {
@@ -14,7 +16,7 @@ export const UserInfo = (props: UserInfoType) => {
 
     let navigate = useNavigate();
 
-    const editProfileHandler = ()=> {
+    const editProfileHandler = () => {
         navigate('/userinfo')
     }
 
@@ -23,10 +25,11 @@ export const UserInfo = (props: UserInfoType) => {
             {/*картинка-заглушка*/}
             <img src={
                 //userAva
-                ""
-            } alt='Photo' style={{width: '50px', height: '60px', borderRadius: '50px'}}/>
+                'https://static.wikia.nocookie.net/rickandmorty/images/e/ee/Morty501.png/revision/latest?cb=20210827150137'
+            } alt="Photo" style={{width: '50px', height: '60px', borderRadius: '50px'}}/>
             <div>{profile.name}</div>
             <span>Front-end dev</span>
+
             <button onClick={editProfileHandler}>Edit Profile</button>
             {/*<Button>Edit Profile</Button>*/}
         </>

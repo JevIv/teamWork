@@ -25,9 +25,11 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
     }
 }
 
+//Action creator
 export const setProfile = (profile: UserType) => ({type: 'SET_PROFILE', profile}) as const
 
 
+//Thuncks
 //не забыть поправить св-во avatar
 export const updateProfile = (updatedProfile: {name: string, avatar?: string}) => async (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsProfileType>) => {
     try {

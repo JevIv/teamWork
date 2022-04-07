@@ -6,7 +6,7 @@ import style from './FormStyle.module.scss';
 import {UserType} from '../../../../API/ProfileAPI/profileAPI';
 import {useDispatch} from 'react-redux';
 import {updateProfile} from '../../../../store/s1-reducer/profile-reducer';
-import {useNavigate} from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
 
 type ErrorType = {
     nickname?: string;
@@ -15,6 +15,7 @@ type ErrorType = {
 
 type FormForProfileType = {
     profile: UserType
+    initialized: boolean
 }
 
 export const FormForProfile = (props: FormForProfileType) => {
@@ -25,6 +26,7 @@ export const FormForProfile = (props: FormForProfileType) => {
 
     const {
         profile,
+        initialized
     } = props
 
     let formik = useFormik({
@@ -52,8 +54,12 @@ export const FormForProfile = (props: FormForProfileType) => {
         }
     })
 
-    const cancelButtonHandler = ()=> {
+    const cancelButtonHandler = () => {
         redirect('/profile')
+    }
+
+    if (!initialized) {
+        return <Navigate to="/login"/>
     }
 
     return (

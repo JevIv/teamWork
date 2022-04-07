@@ -1,5 +1,4 @@
 import {authAPI, LoginParamsType} from '../../API/LoginAPI/login-api';
-import {Dispatch} from 'redux';
 import {ActionsProfileType, setProfile} from './profile-reducer';
 import {ThunkDispatch} from 'redux-thunk';
 import {AppRootStateType} from '../store';
@@ -36,7 +35,7 @@ export const setAuth = (value: boolean) =>
 
 
 
-export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
+export const loginTC = (data: LoginParamsType) => (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsType | ActionsProfileType | ActionsAppType>) => {
     dispatch(setIsLoading(true))
     authAPI.login(data)
         .then(res => {
