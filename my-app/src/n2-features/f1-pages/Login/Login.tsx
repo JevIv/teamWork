@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, FormControlLabel, Radio, TextField} from "@mui/material";
-import { Input } from '../../../n0-common/c1-iu/input/Input';
+import { InputTxt } from '../../../n0-common/c1-iu/input/Input';
 
 export const Login = () => {
     return (
