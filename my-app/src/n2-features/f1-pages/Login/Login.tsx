@@ -47,6 +47,7 @@ export const Login = () => {
 
     if(isLoggedIn) {
         return <Navigate replace to={"/profile"}/>
+
     }
     return (
         <div>

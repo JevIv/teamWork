@@ -10,22 +10,23 @@ import {AppRootStateType} from '../../store/store';
 function App() {
     const dispatch = useDispatch()
     const initialized = useSelector<AppRootStateType, boolean>(state => state.login.isAuth)
+    const isLoading = useSelector<AppRootStateType, boolean>(state => state.app.isLoading)
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(authMe())
     }, [])
 
-    if (!initialized) {
-        return <h3 style={{color: 'red', textAlign: 'center', fontSize:'50px'}}>LOADING...</h3>
-    }
-
     return (
-        <div className="App">
-            <HashRouter>
-                <Header/>
-                <RoutesFunc/>
-            </HashRouter>
-        </div>
+        <>{!isLoading
+            ? <div className="App">
+                <HashRouter>
+                    <Header/>
+                    <RoutesFunc/>
+                </HashRouter>
+            </div>
+            : <h3 style={{color: 'red', textAlign: 'center', fontSize: '50px'}}>LOADING...</h3>}
+        </>
+
     );
 }
 

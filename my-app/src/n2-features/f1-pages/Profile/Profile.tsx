@@ -19,6 +19,7 @@ export const Profile = () => {
 
     if (!initialized) {
         return <Navigate to='/login'/>
+
     }
 
     return (
