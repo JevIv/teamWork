@@ -7,22 +7,20 @@ import {
     FormGroup,
     FormLabel,
     Grid,
-    Radio,
     TextField
 } from "@mui/material";
-import { Input } from '../../../n0-common/c1-iu/input/Input';
 import {AppRootStateType} from "../../../store/store";
 import {useDispatch, useSelector} from "react-redux";
 import {useFormik} from "formik";
 import {loginTC} from "../../../store/s1-reducer/login-reducer";
+import { Navigate } from "react-router-dom";
+import {Profile} from "../Profile/Profile";
 
 export const Login = () => {
     const dispatch = useDispatch()
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn)
 
-    // if(isLoggedIn) {
-    //     return <Nav replace to={"/"}/>
-    // }
+
 
     const formik = useFormik({
         validate: (values) => {
@@ -47,19 +45,13 @@ export const Login = () => {
         },
     })
 
+    if(isLoggedIn) {
+        return <Navigate replace to={"/profile"}/>
+    }
     return (
-//         <div>
-//             <h1>Sign In</h1>
-//             <TextField id="standard-basic" label="Email" variant="standard" /><br/>
-//             <TextField id="standard-basic" label="Password" type="password" variant="standard" /><br/>
-//             <Button style={{minWidth: '195px', margin: '10px'}}
-//                     variant="outlined">Sign in</Button><br/>
-//             <FormControlLabel value="true" control={<Radio />} label="Remember me" /><br/>
-//             <Button style={{fontSize: 'x-small', color: '#BBBBBB'}} variant="text">Forgot Password</Button>
-//         </div>
-//     );
-// };
-        <Grid container={true}>
+        <div>
+        <h1>Sign In</h1>
+        <Grid container={true} direction={"column"} alignItems={"center"}>
             <Grid item xs={4}>
                 <form onSubmit={formik.handleSubmit}>
                     <FormControl>
@@ -70,15 +62,18 @@ export const Login = () => {
                             <TextField
                                 label={"Email"}
                                 margin={"normal"}
+                                variant="standard"
                                 {...formik.getFieldProps("email")}
                             />
                             {formik.errors.email ? <div>{formik.errors.email}</div> : null}
                             <TextField
                                 label={"Password"}
                                 margin={"normal"} type={"password"}
+                                variant="standard"
                                 {...formik.getFieldProps("password")}
                             />
                             {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+                            <Button type={"submit"} variant="outlined" color={"primary"}>Login</Button>
                             <FormControlLabel
                                 label={"Remember me"}
                                 control={<Checkbox
@@ -86,11 +81,11 @@ export const Login = () => {
                                     checked={formik.values.rememberMe}
                                 />}
                             />
-                            <Button type={"submit"} variant={"contained"} color={"primary"}>Login</Button>
                         </FormGroup>
                     </FormControl>
                 </form>
             </Grid>
         </Grid>
+        </div>
     );
 };
