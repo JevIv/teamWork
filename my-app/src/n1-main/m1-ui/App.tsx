@@ -1,15 +1,18 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
+import { store } from '../m2-bll/store/store';
 import './App.scss';
-import { Header } from './header/Header';
-import { RoutesFunc } from './routes/Routes';
+import { Main } from './main/Main';
+
 
 function App() {
     return (
         <div className="App">
             <HashRouter>
-                <Header/>
-                <RoutesFunc/>
+                <Provider store = {store}>
+                    <Main/>
+                </Provider>
             </HashRouter>
         </div>
     );
