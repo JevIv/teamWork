@@ -1,4 +1,7 @@
 
+
+
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Form, FormikProvider, useFormik } from 'formik';
@@ -7,18 +10,38 @@ import { Button, TextField, withStyles } from '@mui/material';
 import style from './Registration.module.scss';
 import s from '../../../n1-main/m1-ui/App.module.scss'
 
+
+// type RegistrPropsType = {
+//   email: string;
+//   setEmail: (newEmail: string) => void;
+//   pass: string;
+//   setPass: (newPass: string) => void;
+//   confirmPass: string;
+//   setConfirmPass: (confirmNewPass: string) => void;
+// }
+
+type FormikErrorType = {
+  email?: string,
+  password?: string,
+  confirmPassword?:string,
+}
 const validationSchema = yup.object({
   email: yup
     .string()
+    .trim()
     .email("Enter a valid email")
     .required("Email is required"),
   password: yup
     .string()
-    .min(4, "Password should be of minimum 4 characters length")
+    .trim()
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+    )
     .required("Password is required"),
   confirmPassword: yup
     .string()
-    .min(4)
+    .trim()
     .when("password", {
       is: (val: string) => (val && val.length > 1 ? true : false),
       then: yup.string().oneOf(
@@ -29,7 +52,7 @@ const validationSchema = yup.object({
     .required("Confirm Password Required"),
 });
 
-export const Registration = () => {
+export const Registration = React.memo(() => {
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -90,7 +113,7 @@ export const Registration = () => {
       </Form>
     </FormikProvider>
   );
-};
+});
 
 ReactDOM.render(<Registration />, document.getElementById('root'));
 
