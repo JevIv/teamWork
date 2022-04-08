@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/teamWork/static/css/main.c74c83d2.css",
-    "main.js": "/teamWork/static/js/main.e23ffc1c.js",
-    "static/js/787.28cb0dcd.chunk.js": "/teamWork/static/js/787.28cb0dcd.chunk.js",
-    "index.html": "/teamWork/index.html",
-    "main.c74c83d2.css.map": "/teamWork/static/css/main.c74c83d2.css.map",
-    "main.e23ffc1c.js.map": "/teamWork/static/js/main.e23ffc1c.js.map",
-    "787.28cb0dcd.chunk.js.map": "/teamWork/static/js/787.28cb0dcd.chunk.js.map"
+    "main.css": "/teamWork/my-app/static/css/main.c74c83d2.css",
+    "main.js": "/teamWork/my-app/static/js/main.910babab.js",
+    "static/js/787.28cb0dcd.chunk.js": "/teamWork/my-app/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/teamWork/my-app/index.html",
+    "main.c74c83d2.css.map": "/teamWork/my-app/static/css/main.c74c83d2.css.map",
+    "main.910babab.js.map": "/teamWork/my-app/static/js/main.910babab.js.map",
+    "787.28cb0dcd.chunk.js.map": "/teamWork/my-app/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c74c83d2.css",
-    "static/js/main.e23ffc1c.js"
+    "static/js/main.910babab.js"
   ]
 }
