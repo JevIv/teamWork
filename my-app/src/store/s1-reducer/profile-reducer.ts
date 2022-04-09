@@ -1,12 +1,11 @@
 import { ThunkDispatch } from 'redux-thunk';
 import {profileAPI, UserType} from '../../API/ProfileAPI/profileAPI';
 import {AppRootStateType} from '../store';
+import {ActionsAppType, setIsLoading} from './app-reducer';
 
-export type ActionsProfileType = ReturnType<typeof setProfile>
 type InitialStateType = {
     profileInfo: UserType | null
 }
-
 
 const initialState: InitialStateType = {
        profileInfo: null
@@ -14,7 +13,7 @@ const initialState: InitialStateType = {
 
 export const profileReducer = (state: InitialStateType = initialState, action: ActionsProfileType): InitialStateType => {
     switch (action.type) {
-        case 'SET_PROFILE': {
+        case 'PROFILE/SET_PROFILE': {
             return {
                 ...state,
                 profileInfo: action.profile
@@ -26,15 +25,19 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
 }
 
 //Action creator
-export const setProfile = (profile: UserType) => ({type: 'SET_PROFILE', profile}) as const
+export type ActionsProfileType = ReturnType<typeof setProfile>
+
+export const setProfile = (profile: UserType) => ({type: 'PROFILE/SET_PROFILE', profile}) as const
 
 
 //Thuncks
 //не забыть поправить св-во avatar
-export const updateProfile = (updatedProfile: {name: string, avatar?: string}) => async (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsProfileType>) => {
+export const updateProfile = (updatedProfile: {name: string, avatar?: string}) => async (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsProfileType | ActionsAppType>) => {
     try {
+        dispatch(setIsLoading(true))
         const res = await profileAPI.updateUser(updatedProfile)
         dispatch(setProfile(res.updatedUser))
+        dispatch(setIsLoading(false))
 
     } catch(e) {
 
