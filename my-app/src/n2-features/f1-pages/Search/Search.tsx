@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../../store/store";
 import {useFormik} from "formik";
@@ -16,19 +16,31 @@ import {
     TextField
 } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import {SearchResponseType} from "../../../API/SearchAPI/search-api";
+import {searchTC} from "../../../store/s1-reducer/search-reducer";
 
 export const Search = () => {
     const dispatch = useDispatch()
-    //const searchQuery = useSelector<AppRootStateType, boolean>(state => state.login.searchQuery)
+    const searchResults = useSelector<AppRootStateType, SearchResponseType>(state => state.search.searchResults)
+    const [search, setSearch] = useState("");
 
 
     const formik = useFormik({
         initialValues: {
-            searchQuery: ""
+            packName: "",
+            min?: number,
+            max?: number,
+            sortPacks?: string,
+            page?: number,
+            pageCount?: number,
+            user_id: string,
         },
         onSubmit: values => {
-            //dispatch(searchTC(searchQuery));
+            if(search.length >= 3){
+                dispatch(searchTC(values));
+            }
         },
+
     })
 
 
