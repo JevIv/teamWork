@@ -1,7 +1,7 @@
-import { RegistrationAPI } from './../r3-dal/RegistrationAPI';
+import { RegistrationAPI } from './RegistrationAPI';
 import { ThunkAction } from "redux-thunk";
-import { AppRootStateType } from "../../../../n1-main/m2-bll/store";
-import { ExtraArgumentNya, ReturnVoid, tryCatch } from "../../../../n1-main/m2-bll/thunk";
+import { AppRootStateType } from "../../../store/store";
+import { ExtraArgumentNya, ReturnVoid, tryCatch } from "../../../n1-main/m2-bll/thunk";
 import { RegistrationAction, RegistrationActionType } from "./RegistrationAction";
 
 

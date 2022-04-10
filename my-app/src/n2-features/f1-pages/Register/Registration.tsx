@@ -1,15 +1,10 @@
-
-
-
-
 import React from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 import * as yup from 'yup';
-import { Button, TextField, withStyles } from '@mui/material';
-import style from './Registration.module.scss';
-import s from '../../../../n1-main/m1-ui/App.module.scss'
-import { PATH } from '../../../../n1-main/m1-ui/main/routes/Pages';
+import { Button, TextField} from '@mui/material';
+import s from '../../../n1-main/m1-ui/App.module.scss'
 import { useNavigate } from 'react-router-dom';
+import { PATH } from '../../../n1-main/m1-ui/routes/Pages';
 
 
 const validationSchema = yup.object({
@@ -89,6 +84,3 @@ export const Registration = React.memo(() => {
   );
 });
 
-
-
-// export default withStyles(s)

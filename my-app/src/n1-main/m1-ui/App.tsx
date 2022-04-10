@@ -1,18 +1,31 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
-import { store } from '../m2-bll/store';
+import React, {useEffect} from 'react';
+import {HashRouter} from 'react-router-dom';
 import './App.scss';
-import { Main } from './main/Main';
-
+import {Header} from './header/Header';
+import {RoutesFunc} from './routes/Routes';
+import {useDispatch, useSelector} from 'react-redux';
+import {authMe} from '../../store/s1-reducer/login-reducer';
+import {AppRootStateType} from '../../store/store';
+import {Search} from "../../n2-features/f1-pages/Search/Search";
 
 function App() {
+    const dispatch = useDispatch()
+    const initialized = useSelector<AppRootStateType, boolean>(state => state.login.isAuth)
+
+    useEffect(()=> {
+        dispatch(authMe())
+    }, [])
+
+    if (!initialized) {
+        return <h3 style={{color: 'red', textAlign: 'center', fontSize:'50px'}}>LOADING...</h3>
+    }
+
     return (
         <div className="App">
             <HashRouter>
-                <Provider store = {store}>
-                    <Main/>
-                </Provider>
+                <Header/>
+                <Search/>
+                <RoutesFunc/>
             </HashRouter>
         </div>
     );
