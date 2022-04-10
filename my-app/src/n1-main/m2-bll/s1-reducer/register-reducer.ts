@@ -5,7 +5,7 @@ type InitialStateType = any
 
 const initialState: InitialStateType = {}
 
-export const loginReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+export const registerReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
 
         default:
