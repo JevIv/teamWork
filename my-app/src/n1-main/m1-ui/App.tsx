@@ -6,6 +6,7 @@ import {RoutesFunc} from './routes/Routes';
 import {useDispatch, useSelector} from 'react-redux';
 import {authMe} from '../../store/s1-reducer/login-reducer';
 import {AppRootStateType} from '../../store/store';
+import {Search} from "../../n2-features/f1-pages/Search/Search";
 
 function App() {
     const dispatch = useDispatch()
@@ -23,6 +24,7 @@ function App() {
         <div className="App">
             <HashRouter>
                 <Header/>
+                <Search/>
                 <RoutesFunc/>
             </HashRouter>
         </div>
