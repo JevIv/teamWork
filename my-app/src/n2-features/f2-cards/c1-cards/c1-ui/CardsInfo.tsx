@@ -1,5 +1,5 @@
 import React from 'react';
-import style from '../ProfileStyles.module.css';
+import style from '../../../../n2-features/f1-pages/Profile/ProfileStyles.module.css';
 
 export const CardsInfo = () => {
     return (
