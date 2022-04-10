@@ -1,8 +1,5 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { PageNotFound } from "../../../../n2-features/f1-pages/p1-404page/Error404";
-import { Login } from "../../../../n2-features/f1-pages/Login/Login";
-import { Profile } from "../../../../n2-features/f1-pages/p3-profile/Profile";
 import { pages, PagesType } from "./Pages";
 
 
@@ -17,11 +14,6 @@ export const RoutesFunc = () => {
     return (
         <>
             <Routes>
-                {/* <Route path="/reset-pass/" element={<PasswordReset />}/>
-                <Route path="/new-pass/" element={<NewPassword />}/>
-                <Route path="/404/" element={<PageNotFound />}/>
-                <Route path="/profile/" element={<Profile />}/>
-                <Route path="/login/" element={<Login />}/> */}
                 {RoutesPagesList}
             </Routes>
         </>
