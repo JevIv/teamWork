@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
-import { store } from '../m2-bll/store/store';
+import { store } from '../m2-bll/store';
 import './App.scss';
 import { Main } from './main/Main';
 
