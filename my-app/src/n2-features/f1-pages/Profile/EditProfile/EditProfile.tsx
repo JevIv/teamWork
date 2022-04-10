@@ -2,10 +2,10 @@ import React from 'react';
 import s from '../../../../n1-main/m1-ui/App.module.scss';
 import {FormForProfile} from './FormForProfile';
 import {useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../../store/store';
 import {UserType} from '../../../../API/ProfileAPI/profileAPI';
 import style from './FormStyle.module.scss'
 import {Navigate} from 'react-router-dom';
+import { AppRootStateType } from '../../../../n1-main/m2-bll/store';
 // import userAva from '../../../../Assets/rick_morty_PNG32.png'
 
 export const EditProfile = () => {

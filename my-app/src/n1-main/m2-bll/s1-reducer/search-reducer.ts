@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {searchAPI, SearchQueryType} from "../../API/SearchAPI/search-api";
+import {searchAPI, SearchQueryType} from '../../../API/SearchAPI/search-api';
 
 
 

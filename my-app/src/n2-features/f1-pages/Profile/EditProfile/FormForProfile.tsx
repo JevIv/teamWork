@@ -5,8 +5,8 @@ import React from 'react';
 import style from './FormStyle.module.scss';
 import {UserType} from '../../../../API/ProfileAPI/profileAPI';
 import {useDispatch} from 'react-redux';
-import {updateProfile} from '../../../../store/s1-reducer/profile-reducer';
 import {Navigate, useNavigate} from 'react-router-dom';
+import {updateProfile} from '../../../../n1-main/m2-bll/s1-reducer/profile-reducer';
 
 type ErrorType = {
     nickname?: string;

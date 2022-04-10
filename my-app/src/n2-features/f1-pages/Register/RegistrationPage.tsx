@@ -5,7 +5,7 @@ import { RegistrationAction } from "./RegistrationAction"
 import { Registration } from "./Registration"
 import { RegistrationStatus } from "./RegistrationStatus"
 import { Navigate } from "react-router-dom"
-import { AppRootStateType } from "../../../store/store";
+import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 
 
 export const RegistrationForm = () => {

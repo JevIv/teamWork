@@ -2,7 +2,6 @@ import React from 'react';
 import {Navigate, useNavigate} from 'react-router-dom';
 import {UserType} from '../../../../API/ProfileAPI/profileAPI';
 import {useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../../store/store';
 // import userAva from '../../../../Assets/rick_morty_PNG32.png'
 
 type UserInfoType = {
