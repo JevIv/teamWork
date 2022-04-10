@@ -1,4 +1,4 @@
-import { instance } from "../../../../n1-main/m3-dal/instance";
+import { instance } from "../../../n1-main/m3-dal/instance";
 
 export type RegistrDataType = {
     error: string;

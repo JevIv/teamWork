@@ -1,0 +1,19 @@
+.form_texField {
+  margin-top: 50px ;
+  text-align: center;
+}
+
+.editProfileContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+
+.editProfileContainer img {
+  width: 70px;
+  height: 80px;
+  border-radius: 50px;
+}
