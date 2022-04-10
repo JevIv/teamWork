@@ -1,11 +1,8 @@
-import React, {useEffect} from 'react';
-import {HashRouter} from 'react-router-dom';
+import React from 'react';
+import { HashRouter } from 'react-router-dom';
 import './App.scss';
-import {Header} from './header/Header';
-import {RoutesFunc} from './routes/Routes';
-import {useDispatch, useSelector} from 'react-redux';
-import {authMe} from '../../store/s1-reducer/login-reducer';
-import {AppRootStateType} from '../../store/store';
+import { Header } from './header/Header';
+import { RoutesFunc } from './routes/Routes';
 
 function App() {
     const dispatch = useDispatch()
@@ -15,6 +12,10 @@ function App() {
     useEffect(() => {
         dispatch(authMe())
     }, [])
+
+    if (!initialized) {
+        return <h3 style={{color: 'red', textAlign: 'center', fontSize:'50px'}}>LOADING...</h3>
+    }
 
     return (
         <>{!isLoading

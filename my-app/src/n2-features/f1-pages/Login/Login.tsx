@@ -1,20 +1,6 @@
 import React from 'react';
-import {
-    Button,
-    Checkbox,
-    FormControl,
-    FormControlLabel,
-    FormGroup,
-    FormLabel,
-    Grid,
-    TextField
-} from "@mui/material";
-import {AppRootStateType} from "../../../store/store";
-import {useDispatch, useSelector} from "react-redux";
-import {useFormik} from "formik";
-import {loginTC} from "../../../store/s1-reducer/login-reducer";
-import { Navigate } from "react-router-dom";
-import {Profile} from "../Profile/Profile";
+import {Button, FormControlLabel, Radio, TextField} from "@mui/material";
+import { Input } from '../../../n0-common/c1-iu/input/Input';
 
 export const Login = () => {
     const dispatch = useDispatch()
@@ -47,7 +33,6 @@ export const Login = () => {
 
     if(isLoggedIn) {
         return <Navigate replace to={"/profile"}/>
-
     }
     return (
         <div>

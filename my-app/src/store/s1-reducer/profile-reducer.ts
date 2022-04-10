@@ -1,7 +1,3 @@
-import { ThunkDispatch } from 'redux-thunk';
-import {profileAPI, UserType} from '../../API/ProfileAPI/profileAPI';
-import {AppRootStateType} from '../store';
-import {ActionsAppType, setIsLoading} from './app-reducer';
 
 type InitialStateType = {
     profileInfo: UserType | null

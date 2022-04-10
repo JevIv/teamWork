@@ -1,14 +1,4 @@
 import React from 'react';
-import s from '../../../n1-main/m1-ui/App.module.scss';
-import style from './ProfileStyles.module.css'
-import {CardsInfo} from './ProfileComponents/CardsInfo';
-import {UserInfo} from './ProfileComponents/UserInfo';
-import {MainBar} from './ProfileComponents/MainBar';
-import {useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../store/store';
-import {UserType} from '../../../API/ProfileAPI/profileAPI';
-import {Navigate, useNavigate} from 'react-router-dom';
-
 
 export const Profile = () => {
 
@@ -19,7 +9,6 @@ export const Profile = () => {
 
     if (!initialized) {
         return <Navigate to='/login'/>
-
     }
 
     return (
