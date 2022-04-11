@@ -5,8 +5,7 @@ import { RegistrationAction, RegistrationActionType } from "./RegistrationAction
 import { AppRootStateType } from '../../../n1-main/m2-bll/store';
 
 
-export const signUp = (
-    email: string, password: string, confirmPassword: string
+export const signUp = (email: string, password: string, confirmPassword: string
 ): ThunkAction<ReturnVoid, AppRootStateType, ExtraArgumentNya, RegistrationActionType> => async (
     dispatch,
     // getStore: GetAppStoreType
