@@ -7,14 +7,15 @@ import {
     FormGroup,
     FormLabel,
     Grid,
+    Radio,
     TextField
-} from "@mui/material";
-import {AppRootStateType} from "../../../store/store";
-import {useDispatch, useSelector} from "react-redux";
-import {useFormik} from "formik";
-import {loginTC} from "../../../store/s1-reducer/login-reducer";
-import { Navigate } from "react-router-dom";
-import {Profile} from "../Profile/Profile";
+} from '@mui/material';
+import { Input } from '../../../n0-common/c1-iu/input/Input';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from '../../../n1-main/m2-bll/store';
+import {useFormik} from 'formik';
+import {loginTC} from '../../../n1-main/m2-bll/s1-reducer/login-reducer';
+import { Navigate } from 'react-router-dom';
 
 export const Login = () => {
     const dispatch = useDispatch()

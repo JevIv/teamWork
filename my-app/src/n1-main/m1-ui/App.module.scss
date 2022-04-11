@@ -1,19 +1,24 @@
-.block{
-    &_sing{
+.block {
+    &_sing {
         margin: 0 auto;
-    display:flex;
-    flex-direction: column;
-    max-width: 425px;
-    border-radius: 8px;
-    background-color:rgba(157, 199, 199, 0.11);
-    input{
-        margin: 5px 35px;
+        display: flex;
+        flex-direction: column;
+        max-width: 425px;
+        border-radius: 8px;
+        background-color: rgba(157, 199, 199, 0.11);
+        h1{
+            margin: 0 auto;
+        }
     }
-    }
-    &_btn{
+
+    &_btn {
         display: flex;
         justify-content: space-around;
-        margin-top: 80px;
+        margin-top: 55px;
         margin-bottom: 60px;
     }
+}
+
+div .input{
+    margin: 20px 35px;
 }

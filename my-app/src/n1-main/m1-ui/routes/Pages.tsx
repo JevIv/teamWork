@@ -12,8 +12,8 @@ export const PATH = {
     PROFILE: "/profile/",
     FORGOT: "/forgot/",
     SET_PASS: "/new-pass/",
-    PACKS: "/packs/",
-    CARDS: "/cards/"
+    PACKS: "/c2-packs/",
+    CARDS: "/c1-cards/"
 
 }
 export type PagesType = {

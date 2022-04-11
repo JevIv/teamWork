@@ -1,14 +1,16 @@
 import React from 'react';
-import s from '../../../n1-main/m1-ui/App.module.scss';
-import style from './ProfileStyles.module.css'
-import {CardsInfo} from './ProfileComponents/CardsInfo';
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from '../../../n1-main/m2-bll/store';
+import {UserType} from '../../../API/ProfileAPI/profileAPI';
+import {useNavigate} from 'react-router-dom';
 import {UserInfo} from './ProfileComponents/UserInfo';
 import {MainBar} from './ProfileComponents/MainBar';
-import {useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../store/store';
-import {UserType} from '../../../API/ProfileAPI/profileAPI';
-import {Navigate, useNavigate} from 'react-router-dom';
+import style from './ProfileStyles.module.css';
+import {CardsInfo} from '../../f2-cards/c1-cards/c1-ui/CardsInfo';
 
+function Navigate(props: { to: string }) {
+    return null;
+}
 
 export const Profile = () => {
 

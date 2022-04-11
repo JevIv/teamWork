@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react';
 import {HashRouter} from 'react-router-dom';
 import './App.scss';
-import {Header} from './header/Header';
-import {RoutesFunc} from './routes/Routes';
-import {useDispatch, useSelector} from 'react-redux';
-import {authMe} from '../../store/s1-reducer/login-reducer';
-import {AppRootStateType} from '../../store/store';
-import {Search} from "../../n2-features/f1-pages/Search/Search";
+import { Header } from './header/Header';
+import { RoutesFunc } from './routes/Routes';
+import {AppRootStateType} from '../m2-bll/store';
+import { authMe } from '../m2-bll/s1-reducer/login-reducer';
 
 function App() {
     const dispatch = useDispatch()
@@ -21,13 +19,16 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <HashRouter>
-                <Header/>
-                <Search/>
-                <RoutesFunc/>
-            </HashRouter>
-        </div>
+        <>{!isLoading
+            ? <div className="App">
+                <HashRouter>
+                    <Header/>
+                    <RoutesFunc/>
+                </HashRouter>
+            </div>
+            : <h3 style={{color: 'red', textAlign: 'center', fontSize: '50px'}}>LOADING...</h3>}
+        </>
+
     );
 }
 

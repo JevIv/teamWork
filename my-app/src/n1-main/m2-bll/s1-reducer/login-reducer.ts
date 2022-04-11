@@ -1,8 +1,8 @@
-import {authAPI, LoginParamsType} from '../../API/LoginAPI/login-api';
 import {Dispatch} from 'redux';
 import {ActionsProfileType, setProfile} from './profile-reducer';
 import {ThunkDispatch} from 'redux-thunk';
 import {AppRootStateType} from '../store';
+import {authAPI, LoginParamsType} from '../../../API/LoginAPI/login-api';
 
 type ActionsType = ReturnType<typeof setIsLoggedInAC> | ReturnType<typeof setAuth >
 type InitialStateType = {
