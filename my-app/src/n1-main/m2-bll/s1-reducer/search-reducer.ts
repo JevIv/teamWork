@@ -1,7 +1,6 @@
-import {SearchResponseType} from "../../API/SearchAPI/search-api";
+import {SearchResponseType} from "../../../API/SearchAPI/search-api";
 
-
-type ActionsType = ReturnType<typeof setSearcAC>
+type ActionsType = ReturnType<typeof setSearchAC>
 
 const initialState: SearchResponseType = {
     cardPacks: [{

@@ -51,7 +51,9 @@ export const Search = (props: SearchPropsType) => {
         </div>
     );
 };
+/*
 
 const setSearchValue = useCallback((SearchPacksValue: string) => {
         dispatch(setSearchPacksValueAC(SearchPacksValue))
     }, [dispatch])
+*/
