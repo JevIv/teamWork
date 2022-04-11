@@ -2,10 +2,9 @@ import React from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 import * as yup from 'yup';
 import { Button, TextField} from '@mui/material';
-import s from '../../../n1-main/m1-ui/App.module.scss'
+import s from '../../../n1-main/m1-ui/App.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../../n1-main/m1-ui/routes/Pages';
-
 
 const validationSchema = yup.object({
   email: yup
