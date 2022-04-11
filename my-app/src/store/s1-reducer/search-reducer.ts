@@ -1,5 +1,4 @@
-import {Dispatch} from "redux";
-import {CardPackType, searchAPI, SearchResponseType} from "../../API/SearchAPI/search-api";
+import {SearchResponseType} from "../../API/SearchAPI/search-api";
 
 
 type ActionsType = ReturnType<typeof setSearcAC>
@@ -19,22 +18,24 @@ const initialState: SearchResponseType = {
     minCardsCount: 0,
     page: 0,
     pageCount: 0,
+    searchValue: ""
 }
 
 export const searchReducer = (state: SearchResponseType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case "SET_SEARCH":
-            return action.cardPacks.map(packs => ({...packs}))
+            return {...state, searchValue: action.searchValue}
         default:
             return state
     }
 }
 
-export const setSearchAC = (cardPacks: CardPackType[]) => ({
+export const setSearchAC = (searchValue: string) => ({
     type: "SET_SEARCH",
-    cardPacks,
+    searchValue,
 });
 
+/*
 export const searchTC = ({searchName}: string) => (dispatch: Dispatch) => {
 
     searchAPI.search(params)
@@ -43,6 +44,5 @@ export const searchTC = ({searchName}: string) => (dispatch: Dispatch) => {
         })
         .catch(e => {
 
-
         })
-}
+}*/

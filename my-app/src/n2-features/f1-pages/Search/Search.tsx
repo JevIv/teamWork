@@ -1,47 +1,26 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../../store/store";
-import {useFormik} from "formik";
-import {loginTC} from "../../../store/s1-reducer/login-reducer";
-import {Navigate} from "react-router-dom";
+import React, {ChangeEvent, useCallback, useState} from 'react';
 import {
-    Button,
-    Checkbox,
     FormControl,
-    FormControlLabel,
     FormGroup,
-    FormLabel,
     Grid,
-    InputAdornment, InputLabel,
+    InputAdornment,
     TextField
 } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import {SearchResponseType} from "../../../API/SearchAPI/search-api";
-import {searchTC} from "../../../store/s1-reducer/search-reducer";
-
-export const Search = () => {
-    const dispatch = useDispatch()
-    const searchResults = useSelector<AppRootStateType, SearchResponseType>(state => state.search.searchResults)
-    const [search, setSearch] = useState("");
 
 
-    const formik = useFormik({
-        initialValues: {
-            packName: "",
-            min?: number,
-            max?: number,
-            sortPacks?: string,
-            page?: number,
-            pageCount?: number,
-            user_id: string,
-        },
-        onSubmit: values => {
-            if(search.length >= 3){
-                dispatch(searchTC(values));
-            }
-        },
+type SearchPropsType = {
+    setSearchValue: (searchValue: string) => void
+}
 
-    })
+export const Search = (props: SearchPropsType) => {
+
+    const [searchValue, setSearch] = useState("");
+
+    const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.currentTarget.value)
+        props.setSearchValue(searchValue.trim())
+    }
 
 
     return (
@@ -51,6 +30,9 @@ export const Search = () => {
                         <FormControl fullWidth sx={{ m: 1 }}>
                             <FormGroup>
                                 <TextField
+                                    type="text"
+                                    value={searchValue}
+                                    onChange={onchangeHandler}
                                     placeholder="Search..."
                                     margin="normal"
                                     variant="outlined"
@@ -61,7 +43,6 @@ export const Search = () => {
                                             </InputAdornment>
                                         ),
                                     }}
-                                    {...formik.getFieldProps("searchQuery")}
                                 />
                             </FormGroup>
                         </FormControl>
@@ -70,3 +51,7 @@ export const Search = () => {
         </div>
     );
 };
+
+const setSearchValue = useCallback((SearchPacksValue: string) => {
+        dispatch(setSearchPacksValueAC(SearchPacksValue))
+    }, [dispatch])
