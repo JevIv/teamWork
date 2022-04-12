@@ -5,6 +5,7 @@ import { Header } from './header/Header';
 import { RoutesFunc } from './routes/Routes';
 import {AppRootStateType} from '../m2-bll/store';
 import { authMe } from '../m2-bll/s1-reducer/login-reducer';
+import {useDispatch, useSelector} from "react-redux";
 
 function App() {
     const dispatch = useDispatch()
@@ -19,7 +20,7 @@ function App() {
     }
 
     return (
-        <>{!isLoading
+        <>{!initialized
             ? <div className="App">
                 <HashRouter>
                     <Header/>

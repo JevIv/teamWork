@@ -26,7 +26,7 @@ export const Search = (props: SearchPropsType) => {
     return (
         <div>
             <Grid container={true} direction={"column"} alignItems={"center"}>
-                    <form onSubmit={formik.handleSubmit}>
+                    <form>
                         <FormControl fullWidth sx={{ m: 1 }}>
                             <FormGroup>
                                 <TextField
