@@ -1,15 +1,14 @@
-import { RegistrationAPI } from './RegistrationAPI';
+// import { RegistrationAPI } from './RegistrationAPI';
 import { ThunkAction } from "redux-thunk";
-import { AppRootStateType } from "../../../store/store";
-import { ExtraArgumentNya, ReturnVoid, tryCatch } from "../../../n1-main/m2-bll/thunk";
+import { ExtraArgumentNya, ReturnVoid, tryCatch } from "../../../../n1-main/m2-bll/thunk";
 import { RegistrationAction, RegistrationActionType } from "./RegistrationAction";
+import { AppRootStateType } from '../../../../n1-main/m2-bll/store';
 
 
 export const signUp = (
     email: string, password: string, confirmPassword: string
 ): ThunkAction<ReturnVoid, AppRootStateType, ExtraArgumentNya, RegistrationActionType> => async (
     dispatch,
-    // getStore: GetAppStoreType
 ) => {
     dispatch(RegistrationAction.setLoading(true));
 
@@ -17,7 +16,7 @@ export const signUp = (
         async () => {
             if (password !== confirmPassword) dispatch(RegistrationAction.setError("Passwords don't match!"));
             else {
-                const data = await RegistrationAPI.signUp(email,password)
+                // const data = await RegistrationAPI.signUp(email,password)
                 dispatch(RegistrationAction.setSuccess(true));
             }
         },

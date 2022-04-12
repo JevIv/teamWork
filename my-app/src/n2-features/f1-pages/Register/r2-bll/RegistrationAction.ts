@@ -1,4 +1,4 @@
-import { InferActionType } from "../../../n1-main/m2-bll/action"
+import { InferActionType } from "../../../../n1-main/m2-bll/action"
 
 export type RegistrationActionType = InferActionType<typeof RegistrationAction>
 

@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { Login } from "../../../n2-features/f1-pages/Login/Login";
 import { SetPassword } from "../../../n2-features/f1-pages/Password/SetPassword";
 import { Profile } from "../../../n2-features/f1-pages/Profile/Profile";
-import { Registration } from "../../../n2-features/f1-pages/Register/Registration";
+import { Registration } from "../../../n2-features/f1-pages/Register/r1-ui/Registration";
 import { PageNotFound } from "../../../n2-features/f1-pages/404page/Error404";
 
 export const PATH = {
@@ -12,8 +12,8 @@ export const PATH = {
     PROFILE: "/profile/",
     FORGOT: "/forgot/",
     SET_PASS: "/new-pass/",
-    PACKS: "/packs/",
-    CARDS: "/cards/"
+    PACKS: "/c2-packs/",
+    CARDS: "/c1-cards/"
 
 }
 export type PagesType = {

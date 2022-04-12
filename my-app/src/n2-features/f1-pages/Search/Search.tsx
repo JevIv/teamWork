@@ -1,8 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../../store/store";
 import {useFormik} from "formik";
-import {loginTC} from "../../../store/s1-reducer/login-reducer";
 import {Navigate} from "react-router-dom";
 import {
     Button,
