@@ -77,7 +77,7 @@ export const Registration = React.memo(() => {
                 Cancel
               </Button>
               <Button color="primary"  variant="contained" type="submit">
-                Registratio
+                Register
               </Button>
             </div>
           </Form>
