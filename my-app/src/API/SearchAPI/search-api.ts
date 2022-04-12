@@ -13,7 +13,7 @@ export const searchAPI = {
 }
 
 
-type SearchQueryType ={
+export type SearchQueryType ={
     packName?: string
     min?: number
     max?: number
