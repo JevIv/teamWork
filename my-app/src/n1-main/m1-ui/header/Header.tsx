@@ -13,7 +13,8 @@ const NavLinkPage: React.FC<NavLinkProps> = React.memo((
 const  NavLinkPages = pages.map(page=>{
     return (<NavLink
         key={"navLink-" + page._id}
-        to ={(page.path || '/404/') + (page.params ? "/" : "")}>
+        to ={(page.path || '/404/') + (page.params ? "/" : "")}
+        state={{mode: page?.mode}}>
         {page.title}
     </NavLink>)
 })

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
+    baseURL: process.env.REACT_APP_BACK_URL || 'https://neko-back.herokuapp.com/2.0',
     withCredentials: true,
 })
 
@@ -11,7 +11,11 @@ export const authAPI = {
         return instance.post<ResponseType>('auth/login', data)
     },
     authMe() {
-        return instance.post('auth/me')
+        return instance.post<ResponseType>('auth/me')
+            .then(res => res.data)
+    },
+    logOut(){
+        return instance.delete('/auth/me')
             .then(res => res.data)
     }
 }

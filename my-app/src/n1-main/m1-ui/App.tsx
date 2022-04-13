@@ -5,7 +5,7 @@ import './App.scss';
 import { Header } from './header/Header';
 import { RoutesFunc } from './routes/Routes';
 import {AppRootStateType} from '../m2-bll/store';
-import { authMe } from '../m2-bll/s1-reducer/login-reducer';
+import {authMe, logOut} from '../m2-bll/s1-reducer/login-reducer';
 
 function App() {
     const dispatch = useDispatch()
@@ -16,14 +16,16 @@ function App() {
         dispatch(authMe())
     }, [])
 
-    if (!initialized) {
-        return <h3 style={{color: 'red', textAlign: 'center', fontSize:'50px'}}>LOADING...</h3>
-    }
+    // if (!initialized) {
+    //     return <h3 style={{color: 'red', textAlign: 'center', fontSize:'50px'}}>LOADING...</h3>
+    // }
 
     return (
         <>{!isLoading
             ? <div className="App">
                 <HashRouter>
+                    {/*не забыть убрать кнопку выхода*/}
+                    <button onClick={()=>{dispatch(logOut())}}>Log Out</button>
                     <Header/>
                     <RoutesFunc/>
                 </HashRouter>
