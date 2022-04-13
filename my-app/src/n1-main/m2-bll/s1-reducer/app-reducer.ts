@@ -6,7 +6,7 @@ type InitialStateType = {
 }
 
 const initialState: InitialStateType = {
-    isLoading: false
+    isLoading: true
 }
 
 export const AppReducer = (state: InitialStateType = initialState, action: ActionsAppType): InitialStateType => {

@@ -32,7 +32,7 @@ const initialState: InitialStateType = {
     maxCardsCount: 0,
     minCardsCount: 0,
     page: 1,
-    pageCount: 2,
+    pageCount: 7,
     packName: " ",
     min: 0,
     max: 0,
@@ -68,7 +68,7 @@ export const setSearchAC = (packName: string) => ({type: "packsList/SET_SEARCH",
 //Thunks
 
 export const setPacksListTC = (params?:Partial<GetParamsType>)=> (dispatch: Dispatch)=>{
-    packsListAPI.getAllPacks()
+    packsListAPI.getAllPacks(params)
         .then(res => {
             dispatch(setPacksList(res))
         })

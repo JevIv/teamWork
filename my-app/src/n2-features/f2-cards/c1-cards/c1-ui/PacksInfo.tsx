@@ -34,7 +34,7 @@ export const PacksInfo = () => {
 
             {packs.map(p =>
                 <div key={p._id} className={style.packsBar}>
-                    <span>{p.name}</span>
+                    <span >{p.name}</span>
                     <span>{p.cardsCount}</span>
                     <span>{p.updated}</span>
                     <span>{p.user_name}</span>
@@ -44,7 +44,7 @@ export const PacksInfo = () => {
 
             <div>
                 {pages.map(p => (
-                    <span className={currentPage === p ? paginationStyle.activePage : ''}>{p}</span>
+                    <span key={p} className={currentPage === p ? paginationStyle.activePage : ''}>{p}</span>
                 ))}
             </div>
         </>

@@ -7,14 +7,19 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setPacksListTC} from '../../p2-bll/packsList-reducer';
 import {AppRootStateType} from '../../../../../n1-main/m2-bll/store';
 import {CardPacksType} from '../../p3-dal/packsListAPI';
-import {useLocation} from 'react-router-dom';
+import {Navigate, useLocation} from 'react-router-dom';
 
 export const PacksList = () => {
     const dispatch = useDispatch()
+    const initialized = useSelector<AppRootStateType, boolean>(state => state.login.isAuth)
 
     useEffect(() => {
         dispatch(setPacksListTC())
     }, [])
+
+    if (!initialized) {
+        return <Navigate to="/login"/>
+    }
 
     return (
         <div className={style.container}>
