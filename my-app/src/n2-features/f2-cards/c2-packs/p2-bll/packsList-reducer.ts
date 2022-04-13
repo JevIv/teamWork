@@ -1,6 +1,6 @@
 import {CardPacksType, packsListAPI} from '../p3-dal/packsListAPI';
 import {Dispatch} from 'redux';
-import {setIsLoading} from '../../../../n1-main/m2-bll/s1-reducer/app-reducer';
+//import {setIsLoading} from '../../../../n1-main/m2-bll/s1-reducer/app-reducer';
 
 // type InitialStateType = {
 //     packsList: CardPacksType[]

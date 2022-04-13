@@ -1,17 +1,24 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {MainBar} from '../../../../f1-pages/Profile/ProfileComponents/MainBar'
 import style from '../../../../f1-pages/Profile/ProfileStyles.module.css'
         // './ProfileStyles.module.css';
 import {CardsInfo} from '../../../c1-cards/c1-ui/CardsInfo'
 import {useDispatch, useSelector} from 'react-redux';
-import {setPacksListTC} from '../../p2-bll/packsList-reducer';
+import {setPacksListTC, setSearchAC} from '../../p2-bll/packsList-reducer';
 import {AppRootStateType} from '../../../../../n1-main/m2-bll/store';
 import {CardPacksType} from '../../p3-dal/packsListAPI';
 import {useLocation} from 'react-router-dom';
+import {Search} from "../../../../f1-pages/Search/Search";
 
 export const PacksList = () => {
 
 // const packs = useSelector<AppRootStateType, CardPacksType[]>(state => state.packs.packsList as CardPacksType[])
+
+const dispatch = useDispatch()
+
+const setSearchValue = useCallback((SearchPacksValue: string) => {
+        dispatch(setSearchAC(SearchPacksValue))
+    }, [dispatch])
 
 const location = useLocation()
     console.log(location)
@@ -38,7 +45,8 @@ const location = useLocation()
                 <h3>Packs list</h3>
                 <div style={{margin: '0px 48px 0 48px'}}>
                     {/*Style у input здесь временный*/}
-                    <input type="text" style={{width: '100%'}}/>
+                    {/*<input type="text" style={{width: '100%'}}/>*/}
+                    <Search setSearchValue={setSearchValue}/>
                     <span><button>Add new pack</button></span>
                 </div>
 
