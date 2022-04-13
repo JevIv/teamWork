@@ -7,8 +7,15 @@ const instance = axios.create({
 
 
 export const searchAPI = {
-    search(params: SearchQueryType){
-        return instance.get<SearchResponseType>(`/cards/pack`, {params})
+    search(data: SearchQueryType){
+        return instance.get<SearchResponseType>(`/cards/pack
+        ?packName=${data.packName}
+        &min=${data.min}
+        &max=${data.max}
+        &sortPacks=${data.sortPacks}
+        &page=${data.page}
+        &pageCount=${data.pageCount}
+        &user_id=${data.user_id}`)
     }
 }
 
@@ -23,8 +30,8 @@ export type SearchQueryType ={
     user_id: string
 }
 
-export type SearchResponseType = {
-    cardPacks: CardPackType[]
+type SearchResponseType = {
+    cardPacks: cardPacksType
     cardPacksTotalCount: number
     maxCardsCount: number
     minCardsCount: number
@@ -32,7 +39,9 @@ export type SearchResponseType = {
     pageCount: number
 }
 
-export type CardPackType = {
+type cardPacksType = cardPack[]
+
+type cardPack = {
     _id: string
     user_id: string
     name: string

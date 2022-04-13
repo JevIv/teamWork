@@ -37,8 +37,8 @@ export const Login = () => {
             }
         },
         initialValues: {
-            email: "",
-            password: "",
+            email: "testforcardproject@list.ru",
+            password: "1q2a3z3e",
             rememberMe: false
         },
         onSubmit: values => {

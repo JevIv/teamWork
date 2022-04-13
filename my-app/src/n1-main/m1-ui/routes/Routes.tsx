@@ -5,6 +5,7 @@ import { Login } from "../../../n2-features/f1-pages/Login/Login";
 import { Profile } from "../../../n2-features/f1-pages/Profile/Profile";
 import { pages, PagesType } from "./Pages";
 import {EditProfile} from '../../../n2-features/f1-pages/Profile/EditProfile/EditProfile';
+import {PacksList} from '../../../n2-features/f2-cards/c2-packs/p1-ui/u1-packsList/PacksList';
 
 
 const  RoutesPagesList = pages.map((page: PagesType) =>{
@@ -24,7 +25,9 @@ export const RoutesFunc = () => {
                 <Route path="/profile/" element={<Profile />}/>
                 <Route path="/login/" element={<Login />}/>*/}
                 {/*путь на страницу редактирования профайла*/}
+                {/*<Route path="/uni/" element={<Uni />}/>*/}
                 <Route path="/userinfo/" element={<EditProfile />}/>
+                <Route path="/packslist" element={<PacksList />}/>
                 {RoutesPagesList}
             </Routes>
         </>
