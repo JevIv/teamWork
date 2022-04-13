@@ -30,7 +30,7 @@ export const Search = (props: SearchPropsType) => {
                         <FormControl >
                             <FormGroup>
                                 <TextField
-                                    sx={{ width: '53vh' }}
+                                    sx={{ width: '52vh' }}
                                     type="text"
                                     value={searchValue}
                                     onChange={onchangeHandler}

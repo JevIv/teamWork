@@ -48,6 +48,8 @@ export const packsListReducer = (state: InitialStateType = initialState, action:
             }
         case "SET_SEARCH":
             return {...state, packName: action.packName}
+        case "SET_PAGE":
+            return {...state, page: action.page}
         default:
             return state
     }
@@ -55,13 +57,20 @@ export const packsListReducer = (state: InitialStateType = initialState, action:
 
 //Actions creators
 
-type ActionsPacklistType = SetPacksListAcType | SetSearchAcType
+type ActionsPacklistType = SetPacksListAcType
+    | SetSearchAcType
+    | setPageAcType
 
 type SetPacksListAcType = ReturnType<typeof setPacksList>
 type SetSearchAcType = ReturnType<typeof setSearchAC>
+type setPageAcType = ReturnType<typeof setPageAC>
 
 export const setPacksList = (packsList:CardPacksType[])=> ({type: 'packsList/SET_PACKLIST', packsList}) as const
 export const setSearchAC = (packName: string) => ({type: "SET_SEARCH", packName}) as const
+export const setPageAC = (page: number) => ({type: "SET_PAGE", page}) as const
+//export const setSearchAC = (packName: string) => ({type: "SET_SEARCH", packName}) as const
+//export const setSearchAC = (packName: string) => ({type: "SET_SEARCH", packName}) as const
+//export const setSearchAC = (packName: string) => ({type: "SET_SEARCH", packName}) as const
 
 //Thunks
 
