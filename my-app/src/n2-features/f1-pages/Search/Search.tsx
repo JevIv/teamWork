@@ -26,10 +26,11 @@ export const Search = (props: SearchPropsType) => {
     return (
         <div>
             <Grid container={true} direction={"column"} alignItems={"center"}>
-                    <form>
-                        <FormControl fullWidth sx={{ m: 1 }}>
+                    <form >
+                        <FormControl >
                             <FormGroup>
                                 <TextField
+                                    sx={{ width: '53vh' }}
                                     type="text"
                                     value={searchValue}
                                     onChange={onchangeHandler}
