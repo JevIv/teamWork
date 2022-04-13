@@ -1,7 +1,11 @@
-import React from 'react';
-import style from '../ProfileStyles.module.css';
+import React, {useEffect} from 'react';
+import style from '../../../../n2-features/f1-pages/Profile/ProfileStyles.module.css';
+import {useDispatch} from 'react-redux';
+import {setPacksListTC} from '../../c2-packs/p2-bll/packsList-reducer';
 
 export const CardsInfo = () => {
+
+
     return (
         <div className={style.packsBar}>
             <span>Lorem</span>
