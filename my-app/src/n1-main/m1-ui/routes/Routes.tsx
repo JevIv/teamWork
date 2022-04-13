@@ -27,7 +27,7 @@ export const RoutesFunc = () => {
                 {/*путь на страницу редактирования профайла*/}
                 {/*<Route path="/uni/" element={<Uni />}/>*/}
                 <Route path="/userinfo/" element={<EditProfile />}/>
-                {/*<Route path="/packslist" element={<PacksList />}/>*/}
+                <Route path="/packslist" element={<PacksList />}/>
                 {RoutesPagesList}
             </Routes>
         </>

@@ -23,7 +23,6 @@ export type PagesType = {
     params?: string;
     exact?: boolean;
     page: ReactNode;
-    mode?: boolean
 }
 
 export const pages: PagesType[] = [
@@ -34,7 +33,5 @@ export const pages: PagesType[] = [
     {_id:4, title:"set-pass", path: PATH.SET_PASS, params:"/:token", exact: true, page: <SetPassword/>},
     {_id:5, title:"profile", path: PATH.PROFILE, params:"/:id" ,exact: true, page: <Profile/>},
     {_id:6, title:"error",exact: true, page: <PageNotFound/>},
-    {_id:7, title:"profile2",exact: true, mode: false, page: <Profile/>},
-    {_id:8, title:"packsList",exact: true, mode: true, page: <Profile/>},
 
 ]
