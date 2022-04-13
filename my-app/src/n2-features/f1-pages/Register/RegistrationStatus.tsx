@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Status } from "../../../../n0-common/c1-iu/status/Status";
-import { AppRootStateType } from "../../../../n1-main/m2-bll/store";
+import { Status } from "../../../n0-common/c1-iu/status/Status";
+import { AppRootStateType } from "../../../n1-main/m2-bll/store";
 
 type RegistrationStatusPropsType = {
     firstVisit: boolean

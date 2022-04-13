@@ -2,11 +2,11 @@ import React from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 import * as yup from 'yup';
 import { Button, TextField} from '@mui/material';
-import s from '../../../../n1-main/m1-ui/App.module.scss';
+import s from '../../../n1-main/m1-ui/App.module.scss'
 import { useNavigate } from 'react-router-dom';
-import { PATH } from '../../../../n1-main/m1-ui/routes/Pages';
-import { useDispatch } from 'react-redux';
-import { signUp } from '../r2-bll/registrationThunk';
+import { PATH } from '../../../n1-main/m1-ui/routes/Pages';
+import {useDispatch} from 'react-redux';
+import {signUp} from './RegistrationThunk';
 
 
 const validationSchema = yup.object({
@@ -38,7 +38,7 @@ const validationSchema = yup.object({
 });
 
 export const Registration = React.memo(() => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const history = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -47,8 +47,10 @@ export const Registration = React.memo(() => {
       confirmPassword: '',
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      dispatch (signUp(values.email, values.password, values.confirmPassword))
+    onSubmit: (value) => {
+      // history(PATH.LOGIN)
+      //добавил диспатч, чтобы улетали новые данные на новый аккаунт
+      dispatch(signUp(value.email, value.password, value.confirmPassword))
       history(PATH.LOGIN)
     },
   });
@@ -78,7 +80,7 @@ export const Registration = React.memo(() => {
               <Button className={s.email} variant="outlined" type="reset">
                 Cancel
               </Button>
-              <Button color="primary" variant="contained" type="submit">
+              <Button color="primary"  variant="contained" type="submit">
                 Registratio
               </Button>
             </div>

@@ -1,42 +1,39 @@
-import {SearchQueryType} from "../../../API/SearchAPI/search-api";
+import {Dispatch} from "redux";
+import {searchAPI, SearchQueryType} from '../../../API/SearchAPI/search-api';
 
-type ActionsType = ReturnType<typeof setSearchAC>
 
 
-type InitialStateType = SearchQueryType
-
-const initialState: InitialStateType = {
-    packName: " ",
-    min: 0,
-    max: 0,
-    sortPacks: " ",
-    page: 0,
-    pageCount: 0,
-    user_id: " ",
+type ActionsType = ReturnType<typeof setSearcAC>
+type InitialStateType = {
+    searchName: string
 }
 
-export const searchReducer = (state: SearchQueryType = initialState, action: ActionsType): InitialStateType => {
+const initialState: InitialStateType = {
+    searchName: "",
+}
+
+export const searchReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case "SET_SEARCH":
-            return {...state, packName: action.packName}
         default:
             return state
     }
 }
 
-export const setSearchAC = (packName: string) => ({
+export const setSearcAC = (searchName: string)=> ({
     type: "SET_SEARCH",
-    packName,
+    searchName,
 });
 
-/*
-export const searchTC = ({searchName}: string) => (dispatch: Dispatch) => {
+//castles
+let datas :SearchQueryType;
 
-    searchAPI.search(params)
+export const Search = () => (dispatch: Dispatch) => {
+
+    searchAPI.search(datas)
         .then(data => {
-            dispatch(setSearchAC(data))
+            //castles data.statusText
+            dispatch(setSearcAC(data.statusText))
         })
         .catch(e => {
-
         })
-}*/
+}
