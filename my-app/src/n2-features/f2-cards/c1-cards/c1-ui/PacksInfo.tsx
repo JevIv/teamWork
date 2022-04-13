@@ -1,12 +1,17 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {MainBar} from '../../../f1-pages/Profile/ProfileComponents/MainBar';
 import style from '../../../f1-pages/Profile/ProfileStyles.module.css'
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import {CardPacksType} from '../../c2-packs/p3-dal/packsListAPI';
-import paginationStyle from './PacksInfo.module.css'
+import Stack from '@mui/material/Stack';
+import Pagination from '@mui/material/Pagination';
+import Typography from '@mui/material/Typography';
+import {setCurrentPage} from '../../c2-packs/p2-bll/packsList-reducer';
 
 export const PacksInfo = () => {
+
+    const dispatch = useDispatch()
 
     const packs = useSelector<AppRootStateType, CardPacksType[]>(state => state.packs.cardPacks)
     const pageCount = useSelector<AppRootStateType, number>(state => state.packs.pageCount)
@@ -15,12 +20,9 @@ export const PacksInfo = () => {
 
     const countOfPages = Math.ceil(packsTotalCount / pageCount)
 
-    const pages = []
-
-    for (let i = 1; i <= countOfPages; i++){
-        pages.push(i)
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        dispatch(setCurrentPage(value));
     }
-
     return (
         <>
             <div style={{margin: '0px 48px 0 48px'}}>
@@ -34,7 +36,7 @@ export const PacksInfo = () => {
 
             {packs.map(p =>
                 <div key={p._id} className={style.packsBar}>
-                    <span >{p.name}</span>
+                    <span>{p.name}</span>
                     <span>{p.cardsCount}</span>
                     <span>{p.updated}</span>
                     <span>{p.user_name}</span>
@@ -43,11 +45,13 @@ export const PacksInfo = () => {
             )}
 
             <div>
-                {pages.map(p => (
-                    <span key={p} className={currentPage === p ? paginationStyle.activePage : ''}>{p}</span>
-                ))}
+                {/*{pages.map(p => (*/}
+                {/*    <span key={p} className={currentPage === p ? paginationStyle.activePage : ''}>{p}</span>*/}
+                {/*))}*/}
+                <Stack spacing={2}>
+                    <Pagination count={countOfPages} page={currentPage} onChange={handleChange}/>
+                </Stack>
             </div>
         </>
     );
-};
-
+}

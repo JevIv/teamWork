@@ -17,10 +17,11 @@ export const Profile = () => {
     const dispatch = useDispatch()
     const profile = useSelector<AppRootStateType, UserType>(state => state.profile.profileInfo as UserType)
     const initialized = useSelector<AppRootStateType, boolean>(state => state.login.isAuth)
+    const currentPage = useSelector<AppRootStateType, number>(state => state.packs.page)
 
     useEffect(() => {
         dispatch(setPacksListTC({user_id: profile._id}))
-    }, [])
+    }, [currentPage])
 
     if (!initialized) {
         return <Navigate to="/login"/>

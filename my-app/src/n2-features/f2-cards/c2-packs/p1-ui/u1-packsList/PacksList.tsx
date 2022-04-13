@@ -12,10 +12,11 @@ import {Navigate, useLocation} from 'react-router-dom';
 export const PacksList = () => {
     const dispatch = useDispatch()
     const initialized = useSelector<AppRootStateType, boolean>(state => state.login.isAuth)
+    const currentPage = useSelector<AppRootStateType, number>(state => state.packs.page)
 
     useEffect(() => {
         dispatch(setPacksListTC())
-    }, [])
+    }, [currentPage])
 
     if (!initialized) {
         return <Navigate to="/login"/>
