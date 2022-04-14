@@ -2,26 +2,28 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {UserType} from '../../../API/ProfileAPI/profileAPI';
-import {Navigate, useLocation, useNavigate} from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
 import {UserInfo} from './ProfileComponents/UserInfo';
-import {MainBar} from './ProfileComponents/MainBar';
 import style from './ProfileStyles.module.css';
 import {PacksInfo} from '../../f2-cards/c1-cards/c1-ui/PacksInfo';
 import {setPacksListTC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
-import {CardPacksType} from '../../f2-cards/c2-packs/p3-dal/packsListAPI';
+import {Range} from '../../../n0-common/c1-iu/Range/Range';
 
 
 export const Profile = () => {
 
     let navigate = useNavigate();
-    const dispatch = useDispatch()
-    const profile = useSelector<AppRootStateType, UserType>(state => state.profile.profileInfo as UserType)
-    const initialized = useSelector<AppRootStateType, boolean>(state => state.login.isAuth)
-    const currentPage = useSelector<AppRootStateType, number>(state => state.packs.page)
+    const dispatch = useDispatch();
+
+    const profile = useSelector<AppRootStateType, UserType>(state => state.profile.profileInfo as UserType);
+    const initialized = useSelector<AppRootStateType, boolean>(state => state.login.isAuth);
+    const currentPage = useSelector<AppRootStateType, number>(state => state.packs.page);
+    const min = useSelector<AppRootStateType, number>(state => state.packs.min);
+    const max = useSelector<AppRootStateType, number>(state => state.packs.max);
 
     useEffect(() => {
         dispatch(setPacksListTC({user_id: profile._id}))
-    }, [currentPage])
+    }, [currentPage, min, max])
 
     if (!initialized) {
         return <Navigate to="/login"/>
@@ -39,7 +41,7 @@ export const Profile = () => {
                 </div>
 
                 <div>
-                    RANGE
+                    <Range min={min} max={max}/>
                 </div>
             </div>
             <div className={style.packList}>

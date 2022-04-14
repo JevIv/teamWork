@@ -1,7 +1,6 @@
 import {CardPacksType, GetParamsType, packsListAPI} from '../p3-dal/packsListAPI';
 import {Dispatch} from 'redux';
-import {setIsLoading} from '../../../../n1-main/m2-bll/s1-reducer/app-reducer';
-import {AppRootStateType, store} from '../../../../n1-main/m2-bll/store';
+import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 
 // type InitialStateType = {
 //     packsList: CardPacksType[]
@@ -19,8 +18,8 @@ type InitialStateType = {
     page: number
     pageCount: number,
     packName: string,
-    min?: number
-    max?: number
+    min: number
+    max: number
     sortPacks?: string | null
     user_id: string
 
@@ -35,7 +34,7 @@ const initialState: InitialStateType = {
     pageCount: 9,
     packName: ' ',
     min: 0,
-    max: 0,
+    max: 100,
     sortPacks: null,
     user_id: '',
 
@@ -54,6 +53,8 @@ export const packsListReducer = (state: InitialStateType = initialState, action:
             return {...state, cardPacksTotalCount: action.totalPacks}
         case 'packsList/SET_CURRENT_PAGE':
             return {...state, page: action.currentPage}
+        case 'packsList/SET_MIN_MAX':
+            return {...state, min: action.value[0], max: action.value[1]}
         default:
             return state
     }
@@ -61,17 +62,24 @@ export const packsListReducer = (state: InitialStateType = initialState, action:
 
 //Actions
 
-type ActionsPacklistType = SetPacksListAcType | SetSearchAcType | SetPacksTotalCountType | SetCurrentPageType
+type ActionsPacklistType = SetPacksListAcType
+    | SetSearchAcType
+    | SetPacksTotalCountType
+    | SetCurrentPageType
+    | setMinMaxType
 
 type SetPacksListAcType = ReturnType<typeof setPacksList>
 type SetSearchAcType = ReturnType<typeof setSearchAC>
 type SetPacksTotalCountType = ReturnType<typeof setPacksTotalCount>
 type SetCurrentPageType = ReturnType<typeof setCurrentPage>
+type setMinMaxType = ReturnType<typeof setMinMax>
 
 export const setPacksList = (packsList: CardPacksType[]) => ({type: 'packsList/SET_PACKLIST', packsList}) as const
 export const setSearchAC = (packName: string) => ({type: 'packsList/SET_SEARCH', packName}) as const
 export const setPacksTotalCount = (totalPacks: number) => ({type: 'packsList/SET_TOTAL_PACKS', totalPacks}) as const
 export const setCurrentPage = (currentPage: number) => ({type: 'packsList/SET_CURRENT_PAGE', currentPage}) as const
+export const setMinMax = (value: number[]) => ({type: 'packsList/SET_MIN_MAX', value}) as const
+
 
 //Thunks
 
@@ -84,8 +92,8 @@ export const setPacksListTC = (params?: Partial<GetParamsType>) => (dispatch: Di
     packsListAPI.getAllPacks({
         page: allPacksList.page,
         pageCount: allPacksList.pageCount,
-        min: params?.min,
-        max: params?.max,
+        min: allPacksList.min,
+        max: allPacksList.max,
         sortPacks: params?.sortPacks,
         user_id: params?.user_id,
     })

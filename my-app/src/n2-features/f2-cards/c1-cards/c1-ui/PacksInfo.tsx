@@ -1,28 +1,19 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {MainBar} from '../../../f1-pages/Profile/ProfileComponents/MainBar';
 import style from '../../../f1-pages/Profile/ProfileStyles.module.css'
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import {CardPacksType} from '../../c2-packs/p3-dal/packsListAPI';
-import Stack from '@mui/material/Stack';
-import Pagination from '@mui/material/Pagination';
-import Typography from '@mui/material/Typography';
-import {setCurrentPage} from '../../c2-packs/p2-bll/packsList-reducer';
+import {PaginationComponent} from '../../../../n0-common/c1-iu/Pagination/PaginationComponent';
 
 export const PacksInfo = () => {
 
-    const dispatch = useDispatch()
-
     const packs = useSelector<AppRootStateType, CardPacksType[]>(state => state.packs.cardPacks)
     const pageCount = useSelector<AppRootStateType, number>(state => state.packs.pageCount)
+
     const packsTotalCount = useSelector<AppRootStateType, number>(state => state.packs.cardPacksTotalCount)
     const currentPage = useSelector<AppRootStateType, number>(state => state.packs.page)
 
-    const countOfPages = Math.ceil(packsTotalCount / pageCount)
-
-    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-        dispatch(setCurrentPage(value));
-    }
     return (
         <>
             <div style={{margin: '0px 48px 0 48px'}}>
@@ -45,12 +36,9 @@ export const PacksInfo = () => {
             )}
 
             <div>
-                {/*{pages.map(p => (*/}
-                {/*    <span key={p} className={currentPage === p ? paginationStyle.activePage : ''}>{p}</span>*/}
-                {/*))}*/}
-                <Stack spacing={2}>
-                    <Pagination count={countOfPages} page={currentPage} onChange={handleChange}/>
-                </Stack>
+                <PaginationComponent packsTotalCount={packsTotalCount}
+                                     pageCount={pageCount}
+                                     currentPage={currentPage} />
             </div>
         </>
     );
