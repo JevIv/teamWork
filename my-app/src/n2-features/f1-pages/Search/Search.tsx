@@ -2,6 +2,9 @@ import React, {ChangeEvent, useState} from 'react';
 import {FormControl, FormGroup, Grid, InputAdornment, TextField} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
+// export const Search = () => {
+//     const dispatch = useDispatch()
+    //const searchQuery = useSelector<AppRootStateType, boolean>(state => state.login.searchQuery)
 
 type SearchPropsType = {
     setSearchValue: (searchValue: string) => void

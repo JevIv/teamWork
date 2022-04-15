@@ -6,6 +6,8 @@ import {registerReducer} from "./s1-reducer/register-reducer";
 import {passwordReducer} from "./s1-reducer/pass-reducer";
 import { AppReducer } from './s1-reducer/app-reducer';
 import {packsListReducer} from '../../n2-features/f2-cards/c2-packs/p2-bll/packsList-reducer';
+import { cardsListReducer } from '../../n2-features/f2-cards/c1-cards/c2-bll/CardsListReducer';
+
 
 
 const rootReducer = combineReducers({
@@ -21,5 +23,7 @@ const rootReducer = combineReducers({
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
+export type ActionsType = RegistrationActionType
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootStateType, unknown, ActionsType>
 // @ts-ignore
 window.store = store;
