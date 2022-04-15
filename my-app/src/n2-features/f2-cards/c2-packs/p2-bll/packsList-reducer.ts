@@ -2,13 +2,6 @@ import {CardPacksType, GetParamsType, packsListAPI} from '../p3-dal/packsListAPI
 import {Dispatch} from 'redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 
-// type InitialStateType = {
-//     packsList: CardPacksType[]
-// }
-//
-// const initialState: InitialStateType = {
-//     packsList: []
-// }
 
 type InitialStateType = {
     cardPacks: CardPacksType[]
@@ -55,6 +48,8 @@ export const packsListReducer = (state: InitialStateType = initialState, action:
             return {...state, page: action.currentPage}
         case 'packsList/SET_MIN_MAX':
             return {...state, min: action.value[0], max: action.value[1]}
+        case "SET_PAGE":
+            return {...state, page: action.page}
         default:
             return state
     }
@@ -67,19 +62,21 @@ type ActionsPacklistType = SetPacksListAcType
     | SetPacksTotalCountType
     | SetCurrentPageType
     | setMinMaxType
+    | setPageAcType
 
 type SetPacksListAcType = ReturnType<typeof setPacksList>
 type SetSearchAcType = ReturnType<typeof setSearchAC>
 type SetPacksTotalCountType = ReturnType<typeof setPacksTotalCount>
 type SetCurrentPageType = ReturnType<typeof setCurrentPage>
 type setMinMaxType = ReturnType<typeof setMinMax>
+type setPageAcType = ReturnType<typeof setPageAC>
 
 export const setPacksList = (packsList: CardPacksType[]) => ({type: 'packsList/SET_PACKLIST', packsList}) as const
 export const setSearchAC = (packName: string) => ({type: 'packsList/SET_SEARCH', packName}) as const
 export const setPacksTotalCount = (totalPacks: number) => ({type: 'packsList/SET_TOTAL_PACKS', totalPacks}) as const
 export const setCurrentPage = (currentPage: number) => ({type: 'packsList/SET_CURRENT_PAGE', currentPage}) as const
 export const setMinMax = (value: number[]) => ({type: 'packsList/SET_MIN_MAX', value}) as const
-
+export const setPageAC = (page: number) => ({type: "SET_PAGE", page}) as const
 
 //Thunks
 

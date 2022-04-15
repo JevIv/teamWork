@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {MainBar} from '../../../../f1-pages/Profile/ProfileComponents/MainBar'
 import style from '../../../../f1-pages/Profile/ProfileStyles.module.css'
 import {PacksInfo} from '../../../c1-cards/c1-ui/PacksInfo'
 import {useDispatch, useSelector} from 'react-redux';
@@ -22,12 +23,20 @@ export const PacksList = () => {
         return <Navigate to="/login"/>
     }
 
+
+const setSearchValue = useCallback((SearchPacksValue: string) => {
+        dispatch(setSearchAC(SearchPacksValue))
+    }, [dispatch])
+
+const location = useLocation()
+    console.log(location)
+
     return (
         <div className={style.container}>
             {/*поправить стили*/}
             <div className={style.optionsMenu}>
-                <h4>Show packs cards</h4>
-                <span>
+                    <h4>Show packs cards</h4>
+                    <span>
                          <button>my</button>
                          <button>all</button>
                     </span>
@@ -42,6 +51,7 @@ export const PacksList = () => {
             </div>
             <div className={style.packList}>
                 <h3>Packs list</h3>
+                {/*<Search setSearchValue={setSearchValue}/>*/}
                 <PacksInfo/>
             </div>
         </div>
