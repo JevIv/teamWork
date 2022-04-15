@@ -8,6 +8,7 @@ export const packsListAPI = {
 }
 
 export type GetParamsType = {
+    packName: string
     min: number
     max: number
     sortPacks: string

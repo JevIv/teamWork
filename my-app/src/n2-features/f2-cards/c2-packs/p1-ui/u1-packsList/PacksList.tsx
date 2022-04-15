@@ -13,10 +13,29 @@ export const PacksList = () => {
     const currentPage = useSelector<AppRootStateType, number>(state => state.packs.page)
     const min = useSelector<AppRootStateType, number>(state => state.packs.min)
     const max = useSelector<AppRootStateType, number>(state => state.packs.max)
+    const packName = useSelector<AppRootStateType, string>(state => state.packs.packName)
+
+    // const debounce = (func: any) =>{
+    //     let timer: any;
+    //     const context = this;
+    //     return function(...arg: any){
+    //         // @ts-ignore
+    //
+    //         if (timer){
+    //             clearTimeout(timer)
+    //         }
+    //         timer = setTimeout(()=> {
+    //             timer = null
+    //             func.apply(context, arg);
+    //         }, 1500)
+    //     }
+    // }
+
+    // const deb = useCallback(debounce(dispatch(setPacksListTC())),[])
 
     useEffect(() => {
         dispatch(setPacksListTC())
-    }, [currentPage, min, max])
+    }, [currentPage, min, max, packName])
 
 
 const setSearchValue = useCallback((SearchPacksValue: string) => {

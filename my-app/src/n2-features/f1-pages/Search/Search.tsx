@@ -1,6 +1,8 @@
 import React, {ChangeEvent, useState} from 'react';
 import {FormControl, FormGroup, Grid, InputAdornment, TextField} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 
 // export const Search = () => {
 //     const dispatch = useDispatch()
@@ -12,11 +14,14 @@ type SearchPropsType = {
 
 export const Search = (props: SearchPropsType) => {
 
-    const [searchValue, setSearch] = useState("");
+    const packName = useSelector<AppRootStateType, string>(state => state.packs.packName)
+
+    const [searchValue, setSearch] = useState(packName);
 
     const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setSearch(e.currentTarget.value)
         props.setSearchValue(searchValue.trim())
+        console.log(searchValue)
     }
     return (
         <>

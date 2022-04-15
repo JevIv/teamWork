@@ -25,7 +25,7 @@ const initialState: InitialStateType = {
     minCardsCount: 0,
     page: 1,
     pageCount: 8,
-    packName: ' ',
+    packName: '',
     min: 0,
     max: 100,
     sortPacks: null,
@@ -85,6 +85,7 @@ export const setPacksListTC = (params?: Partial<GetParamsType>) => (dispatch: Di
 
 
     packsListAPI.getAllPacks({
+        packName: (allPacksList.packName === '' ? params?.packName : allPacksList.packName),
         page: allPacksList.page,
         pageCount: allPacksList.pageCount,
         min: allPacksList.min,
