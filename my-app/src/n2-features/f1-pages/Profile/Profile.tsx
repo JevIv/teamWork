@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {useCallback, useEffect} from 'react';
 import s from '../../../n1-main/m1-ui/App.module.scss';
 import style from './ProfileStyles.module.css'
-import {CardsInfo} from './ProfileComponents/CardsInfo';
 import {UserInfo} from './ProfileComponents/UserInfo';
 import {MainBar} from './ProfileComponents/MainBar';
-import {useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../store/store';
+import {useDispatch, useSelector} from 'react-redux';
 import {UserType} from '../../../API/ProfileAPI/profileAPI';
 import {Navigate, useNavigate} from 'react-router-dom';
 import {Range} from '../../../n0-common/c1-iu/Range/Range';
+import {AppRootStateType} from '../../../n1-main/m2-bll/store';
+import {setPacksListTC, setSearchAC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
+import {PATH} from '../../../n1-main/m1-ui/routes/Pages';
+import {PacksInfo} from '../../f2-cards/c1-cards/c1-ui/PacksInfo';
 
 export const Profile = () => {
     let navigate = useNavigate();

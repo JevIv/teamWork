@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
-import {searchAPI, SearchQueryType} from '../../../API/SearchAPI/search-api';
+// import {searchAPI, SearchQueryType} from '../../../n1-main/m2-bll/s1-reducer/search-reducer.ts'
+        //'../../../API/SearchAPI/search-api';
 
 
 
@@ -25,15 +26,15 @@ export const setSearcAC = (searchName: string)=> ({
 });
 
 //castles
-let datas :SearchQueryType;
-
-export const Search = () => (dispatch: Dispatch) => {
-
-    searchAPI.search(datas)
-        .then(data => {
-            //castles data.statusText
-            dispatch(setSearcAC(data.statusText))
-        })
-        .catch(e => {
-        })
-}
+// let datas :SearchQueryType;
+//
+// export const Search = () => (dispatch: Dispatch) => {
+//
+//     searchAPI.search(datas)
+//         .then(data => {
+//             //castles data.statusText
+//             dispatch(setSearcAC(data.statusText))
+//         })
+//         .catch(e => {
+//         })
+// }

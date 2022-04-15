@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import { instance } from "../../../../n1-main/m3-dal/instance"
-import { ParamsCardsType } from "../c2-bll/CardsListReducer";
+// тоже ругается на импорт
+// import { ParamsCardsType } from "../c2-bll/CardsListReducer";
 
 export type CardType = {
     _id: string;

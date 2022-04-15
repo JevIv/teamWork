@@ -14,7 +14,7 @@ export const PATH = {
     FORGOT: "/forgot/",
     SET_PASS: "/new-pass/",
     PACKS: "/c2-packs/",
-    CARDS: "/c1-cards/"
+    CARDS: "/c1-cards/",
 
 
     //доп. PATH
