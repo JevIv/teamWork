@@ -21,21 +21,6 @@ export const Header = () => {
     return (
         <> 
         <header className={style.header}>
-            {/* <NavLink to ={'/reset-pass/'}>
-                Reset password
-            </NavLink>
-            <NavLink to ={'/new-pass/'}>
-               New password
-            </NavLink>
-            <NavLink to ={'/profile/'}>
-                Profile
-            </NavLink>
-            <NavLink to ={'/login/'}>
-                Login
-            </NavLink>
-            <NavLink to ={'/404/'}>
-                Error 404
-            </NavLink> */}
             {NavLinkPages}
         </header>
         </>

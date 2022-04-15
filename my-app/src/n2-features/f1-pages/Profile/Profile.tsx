@@ -9,6 +9,7 @@ import style from './ProfileStyles.module.css';
 import {PacksInfo} from '../../f2-cards/c1-cards/c1-ui/PacksInfo';
 import {setPacksListTC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
 import {CardPacksType} from '../../f2-cards/c2-packs/p3-dal/packsListAPI';
+import { PATH } from '../../../n1-main/m1-ui/routes/Pages';
 
 
 export const Profile = () => {
@@ -43,6 +44,7 @@ export const Profile = () => {
             </div>
             <div className={style.packList}>
                 <button onClick={() => {navigate('/packslist')}}>Packs list</button>
+                <button onClick={()=>{navigate(PATH.PACK_NAME)}}>Packs Name</button>
                 <h3>My Pack List</h3>
                 <PacksInfo/>
             </div>

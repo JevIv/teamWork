@@ -1,4 +1,6 @@
+import { AxiosResponse } from "axios";
 import { instance } from "../../../../n1-main/m3-dal/instance"
+import { ParamsCardsType } from "../c2-bll/CardsListReducer";
 
 export type CardType = {
     _id: string;
@@ -27,17 +29,23 @@ export type CardsType = {
     page:number;
     pageCount:number;
     packUserId: string;
-} 
+}
+
+
 export type GetCardsPackType = {
     cards: CardType[];
     error:string;
 }
 
-export const cardsListAPI = {
-    getCards(getCardsPack_id: Partial<CardType>){
-        return instance.get<GetCardsPackType>(`cards/card?cardsPack_id=${getCardsPack_id}` + '&pageCount=10')
-        .then(res=> res.data.cards)
+export const CardsListAPI = {
+    getCards: async (id:string) => {
+        const response = await instance.get<CardType>(`/cards/card?cardsPack_id=${id}`+ "&pageCount=30")
+        return response.data;
     }
+
+    // getCards(params: ParamsCardsType){
+    //     return instance.get<any,AxiosResponse<CardsType>, ParamsCardsType>('cards/card', {params}).then(res=> res.data.cards)
+    // }
 } 
 
 
