@@ -6,7 +6,7 @@ export const instance = axios.create({
 })
 
 export const packsListAPI = {
-    getAllPacks(params: Partial<GetParamsType> = {pageCount: 10}) {
+    getAllPacks(params: Partial<GetParamsType> = {pageCount: 8}) {
         return instance.get<PacksListResponseType>('/cards/pack', {params})
             .then(res=> res.data)
     }

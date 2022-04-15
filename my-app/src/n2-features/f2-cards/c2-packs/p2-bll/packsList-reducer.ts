@@ -24,14 +24,12 @@ const initialState: InitialStateType = {
     maxCardsCount: 0,
     minCardsCount: 0,
     page: 1,
-    pageCount: 9,
+    pageCount: 8,
     packName: ' ',
     min: 0,
     max: 100,
     sortPacks: null,
     user_id: '',
-
-
 }
 
 export const packsListReducer = (state: InitialStateType = initialState, action: ActionsPacklistType): InitialStateType => {

@@ -1,9 +1,8 @@
-import React, {useEffect} from 'react';
-import {MainBar} from '../../../../f1-pages/Profile/ProfileComponents/MainBar'
+import React, {useCallback, useEffect} from 'react';
 import style from '../../../../f1-pages/Profile/ProfileStyles.module.css'
 import {PacksInfo} from '../../../c1-cards/c1-ui/PacksInfo'
 import {useDispatch, useSelector} from 'react-redux';
-import {setPacksListTC} from '../../p2-bll/packsList-reducer';
+import {setPacksListTC, setSearchAC} from '../../p2-bll/packsList-reducer';
 import {AppRootStateType} from '../../../../../n1-main/m2-bll/store';
 import {Navigate} from 'react-router-dom';
 import {Range} from '../../../../../n0-common/c1-iu/Range/Range';
@@ -19,17 +18,15 @@ export const PacksList = () => {
         dispatch(setPacksListTC())
     }, [currentPage, min, max])
 
-    if (!initialized) {
-        return <Navigate to="/login"/>
-    }
-
 
 const setSearchValue = useCallback((SearchPacksValue: string) => {
         dispatch(setSearchAC(SearchPacksValue))
     }, [dispatch])
 
-const location = useLocation()
-    console.log(location)
+
+    if (!initialized) {
+        return <Navigate to="/login"/>
+    }
 
     return (
         <div className={style.container}>
@@ -51,8 +48,7 @@ const location = useLocation()
             </div>
             <div className={style.packList}>
                 <h3>Packs list</h3>
-                {/*<Search setSearchValue={setSearchValue}/>*/}
-                <PacksInfo/>
+                <PacksInfo setSearchValue={setSearchValue}/>
             </div>
         </div>
     );

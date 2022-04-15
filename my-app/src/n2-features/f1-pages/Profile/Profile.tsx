@@ -1,15 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {UserType} from '../../../API/ProfileAPI/profileAPI';
 import {Navigate, useNavigate} from 'react-router-dom';
 import {UserInfo} from './ProfileComponents/UserInfo';
-import {MainBar} from './ProfileComponents/MainBar';
 import style from './ProfileStyles.module.css';
 import {PacksInfo} from '../../f2-cards/c1-cards/c1-ui/PacksInfo';
-import {setPacksListTC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
+import {setPacksListTC, setSearchAC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
 import {Range} from '../../../n0-common/c1-iu/Range/Range';
-import {Search} from "../Search/Search";
 
 export const Profile = () => {
     let navigate = useNavigate();
@@ -22,7 +20,7 @@ export const Profile = () => {
     const max = useSelector<AppRootStateType, number>(state => state.packs.max);
 
     useEffect(()=> {
-        dispatch(setPacksListTC())
+        dispatch(setPacksListTC({user_id: profile._id}))
     },[])
 
     const setSearchValue = useCallback((SearchPacksValue: string) => {
@@ -51,8 +49,7 @@ export const Profile = () => {
             <div className={style.packList}>
                 <button onClick={()=>{navigate('/packslist')}}>Packs list</button>
                 <h3>My Pack List</h3>
-                <PacksInfo/>
-                {/*<Search setSearchValue={setSearchValue}/>*/}
+                <PacksInfo setSearchValue={setSearchValue}/>
             </div>
         </div>
     );

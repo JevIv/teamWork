@@ -5,8 +5,13 @@ import style from '../../../f1-pages/Profile/ProfileStyles.module.css'
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import {CardPacksType} from '../../c2-packs/p3-dal/packsListAPI';
 import {PaginationComponent} from '../../../../n0-common/c1-iu/Pagination/PaginationComponent';
+import {Search} from '../../../f1-pages/Search/Search';
 
-export const PacksInfo = () => {
+type Packsinfo= {
+    setSearchValue: (SearchPacksValue: string)=> void;
+}
+
+export const PacksInfo = ({setSearchValue}: Packsinfo) => {
 
     const packs = useSelector<AppRootStateType, CardPacksType[]>(state => state.packs.cardPacks)
     const pageCount = useSelector<AppRootStateType, number>(state => state.packs.pageCount)
@@ -17,8 +22,9 @@ export const PacksInfo = () => {
     return (
         <>
             <div style={{margin: '0px 48px 0 48px'}}>
-                {/*Style у input здесь временный*/}
-                <input type="text" style={{width: '100%'}}/>
+                {/*Style у input и сам Input здесь временный*/}
+                {/*<input type="text" style={{width: '100%'}}/>*/}
+                <Search setSearchValue={setSearchValue}/>
             </div>
 
             <div className={style.mainBar}>

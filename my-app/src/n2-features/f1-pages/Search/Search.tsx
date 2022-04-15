@@ -1,11 +1,5 @@
-import React, {ChangeEvent, useCallback, useState} from 'react';
-import {
-    FormControl,
-    FormGroup,
-    Grid,
-    InputAdornment,
-    TextField
-} from "@mui/material";
+import React, {ChangeEvent, useState} from 'react';
+import {FormControl, FormGroup, Grid, InputAdornment, TextField} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 
@@ -21,15 +15,14 @@ export const Search = (props: SearchPropsType) => {
         setSearch(e.currentTarget.value)
         props.setSearchValue(searchValue.trim())
     }
-
-
     return (
-        <div>
+        <>
             <Grid container={true} direction={"column"} alignItems={"center"}>
                     <form >
                         <FormControl >
                             <FormGroup>
                                 <TextField
+                                    size='small'
                                     sx={{ width: '52vh' }}
                                     type="text"
                                     value={searchValue}
@@ -49,7 +42,7 @@ export const Search = (props: SearchPropsType) => {
                         </FormControl>
                     </form>
             </Grid>
-        </div>
+        </>
     );
 };
 /*
