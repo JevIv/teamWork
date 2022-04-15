@@ -2,10 +2,11 @@ import React from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 import * as yup from 'yup';
 import { Button, TextField} from '@mui/material';
-import s from '../../../n1-main/m1-ui/App.module.scss'
+import s from '../../../n1-main/m1-ui/App.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../../n1-main/m1-ui/routes/Pages';
-
+import {useDispatch} from 'react-redux';
+import {signUp} from './RegistrationThunk';
 
 const validationSchema = yup.object({
   email: yup
@@ -36,6 +37,7 @@ const validationSchema = yup.object({
 });
 
 export const Registration = React.memo(() => {
+  const dispatch = useDispatch()
   const history = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -44,7 +46,10 @@ export const Registration = React.memo(() => {
       confirmPassword: '',
     },
     validationSchema: validationSchema,
-    onSubmit: () => {
+    onSubmit: (value) => {
+      // history(PATH.LOGIN)
+      //добавил диспатч, чтобы улетали новые данные на новый аккаунт
+      dispatch(signUp(value.email, value.password, value.confirmPassword))
       history(PATH.LOGIN)
     },
   });

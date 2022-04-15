@@ -30,9 +30,10 @@ export type ActionsProfileType = ReturnType<typeof setProfile>
 export const setProfile = (profile: UserType) => ({type: 'PROFILE/SET_PROFILE', profile}) as const
 
 
-//Thuncks
+//Thunks
 //не забыть поправить св-во avatar
-export const updateProfile = (updatedProfile: {name: string, avatar?: string}) => async (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsProfileType | ActionsAppType>) => {
+export const updateProfile = (updatedProfile: {name: string, avatar?: string}) =>
+    async (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsProfileType | ActionsAppType>) => {
     try {
         dispatch(setIsLoading(true))
         const res = await profileAPI.updateUser(updatedProfile)
