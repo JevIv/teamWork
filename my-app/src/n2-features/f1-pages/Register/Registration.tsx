@@ -2,11 +2,12 @@ import React from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 import * as yup from 'yup';
 import { Button, TextField} from '@mui/material';
-import s from '../../../n1-main/m1-ui/App.module.scss';
+import s from '../../../n1-main/m1-ui/App.module.scss'
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../../n1-main/m1-ui/routes/Pages';
 import {useDispatch} from 'react-redux';
 import {signUp} from './RegistrationThunk';
+
 
 const validationSchema = yup.object({
   email: yup
@@ -19,7 +20,7 @@ const validationSchema = yup.object({
     .trim()
     .min(8,'Must Contain 8 Characters')
     .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
       "One Uppercase, One Lowercase, One Number and one special case Character"
     )
     .required("Password is required"),

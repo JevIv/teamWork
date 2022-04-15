@@ -1,13 +1,16 @@
 import React, {useCallback, useEffect} from 'react';
+import s from '../../../n1-main/m1-ui/App.module.scss';
+import style from './ProfileStyles.module.css'
+import {UserInfo} from './ProfileComponents/UserInfo';
+import {MainBar} from './ProfileComponents/MainBar';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {UserType} from '../../../API/ProfileAPI/profileAPI';
 import {Navigate, useNavigate} from 'react-router-dom';
-import {UserInfo} from './ProfileComponents/UserInfo';
-import style from './ProfileStyles.module.css';
-import {PacksInfo} from '../../f2-cards/c1-cards/c1-ui/PacksInfo';
-import {setPacksListTC, setSearchAC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
 import {Range} from '../../../n0-common/c1-iu/Range/Range';
+import {AppRootStateType} from '../../../n1-main/m2-bll/store';
+import {setPacksListTC, setSearchAC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
+import {PATH} from '../../../n1-main/m1-ui/routes/Pages';
+import {PacksInfo} from '../../f2-cards/c1-cards/c1-ui/PacksInfo';
 
 export const Profile = () => {
     let navigate = useNavigate();
@@ -47,7 +50,8 @@ export const Profile = () => {
                 </div>
             </div>
             <div className={style.packList}>
-                <button onClick={()=>{navigate('/packslist')}}>Packs list</button>
+                <button onClick={() => {navigate('/packslist')}}>Packs list</button>
+                <button onClick={()=>{navigate(PATH.PACK_NAME)}}>Packs Name</button>
                 <h3>My Pack List</h3>
                 <PacksInfo setSearchValue={setSearchValue}/>
             </div>
