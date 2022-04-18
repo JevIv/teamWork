@@ -1,8 +1,8 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import style from '../../../../f1-pages/Profile/ProfileStyles.module.css'
 import {PacksInfo} from '../../../c1-cards/c1-ui/PacksInfo'
 import {useDispatch, useSelector} from 'react-redux';
-import {setPacksListTC, setSearchAC} from '../../p2-bll/packsList-reducer';
+import {setPacksListTC} from '../../p2-bll/packsList-reducer';
 import {AppRootStateType} from '../../../../../n1-main/m2-bll/store';
 import {Navigate} from 'react-router-dom';
 import {Range} from '../../../../../n0-common/c1-iu/Range/Range';
@@ -13,15 +13,20 @@ export const PacksList = () => {
     const currentPage = useSelector<AppRootStateType, number>(state => state.packs.page)
     const min = useSelector<AppRootStateType, number>(state => state.packs.min)
     const max = useSelector<AppRootStateType, number>(state => state.packs.max)
+    const packName = useSelector<AppRootStateType, string>(state => state.packs.packName)
+
+    //const debounce = useDebounce(packName, 1500)
+
 
     useEffect(() => {
         dispatch(setPacksListTC())
-    }, [currentPage, min, max])
+    }, [currentPage, min, max, packName])
 
 
-const setSearchValue = useCallback((SearchPacksValue: string) => {
-        dispatch(setSearchAC(SearchPacksValue))
-    }, [dispatch])
+// const setSearchValue = useCallback((SearchPacksValue: string) => {
+//     console.log({SearchPacksValue})
+//         dispatch(setSearchAC(SearchPacksValue))
+//     }, [dispatch])
 
 
     if (!initialized) {
@@ -48,7 +53,7 @@ const setSearchValue = useCallback((SearchPacksValue: string) => {
             </div>
             <div className={style.packList}>
                 <h3>Packs list</h3>
-                <PacksInfo setSearchValue={setSearchValue}/>
+                <PacksInfo/>
             </div>
         </div>
     );

@@ -11,7 +11,7 @@ type Packsinfo= {
     setSearchValue: (SearchPacksValue: string)=> void;
 }
 
-export const PacksInfo = ({setSearchValue}: Packsinfo) => {
+export const PacksInfo = () => {
 
     const packs = useSelector<AppRootStateType, CardPacksType[]>(state => state.packs.cardPacks)
     const pageCount = useSelector<AppRootStateType, number>(state => state.packs.pageCount)
@@ -24,7 +24,8 @@ export const PacksInfo = ({setSearchValue}: Packsinfo) => {
             <div style={{margin: '0px 48px 0 48px'}}>
                 {/*Style у input и сам Input здесь временный*/}
                 {/*<input type="text" style={{width: '100%'}}/>*/}
-                <Search setSearchValue={setSearchValue}/>
+                <Search />
+                {/*setSearchValue={setSearchValue}*/}
             </div>
 
             <div className={style.mainBar}>

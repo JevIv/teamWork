@@ -14,6 +14,7 @@ export type GetParamsType = {
     page: number
     pageCount: number
     user_id: string
+    packName: string
 }
 
 export type PacksListResponseType = {
