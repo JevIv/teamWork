@@ -20,10 +20,11 @@ export const Profile = () => {
     const min = useSelector<AppRootStateType, number>(state => state.packs.min);
     const max = useSelector<AppRootStateType, number>(state => state.packs.max);
     const packName = useSelector<AppRootStateType, string>(state => state.packs.packName);
+    const userID = useSelector<AppRootStateType, string>(state => state.packs.user_id)
 
     useEffect(()=> {
-        dispatch(setPacksListTC({user_id: profile._id}))
-    },[currentPage, min, max,packName ])
+        dispatch(setPacksListTC({user_id: profile._id}, 'profile'))
+    },[currentPage, min, max, packName ])
 
     // const setSearchValue = useCallback((SearchPacksValue: string) => {
     //     dispatch(setSearchAC(SearchPacksValue))

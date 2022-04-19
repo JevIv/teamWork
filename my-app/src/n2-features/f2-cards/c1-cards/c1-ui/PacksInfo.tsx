@@ -19,7 +19,6 @@ export const PacksInfo = () => {
         <>
             <div style={{margin: '0px 48px 0 48px'}}>
                 {/*Style у input и сам Input здесь временный*/}
-                {/*<input type="text" style={{width: '100%'}}/>*/}
                 <Search/>
             </div>
             <TableComponent packs={packs}/>

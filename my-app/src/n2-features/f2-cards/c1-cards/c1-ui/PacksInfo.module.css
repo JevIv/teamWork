@@ -29,7 +29,8 @@
                           minmax(150px, 1.33fr)
                           minmax(150px, 2.33fr);
 }
-
+thead,
+tbody,
 tr {
     display: contents;
 }

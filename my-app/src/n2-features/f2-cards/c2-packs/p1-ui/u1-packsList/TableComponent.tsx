@@ -13,6 +13,7 @@ export const TableComponent = ({packs}:TableComponentType) => {
 
     return (
         <table className={s.tableStyle}>
+            <thead>
             <tr>
                 <td>Name</td>
                 <td>Cards</td>
@@ -20,9 +21,11 @@ export const TableComponent = ({packs}:TableComponentType) => {
                 <td>Created</td>
                 <td>Actions</td>
             </tr>
+            </thead>
+            <tbody>
             {packs.map(p => {
                 return (
-                    <tr>
+                    <tr key={p._id}>
                         <td>{p.name}</td>
                         <td>{p.cardsCount}</td>
                         <td>{formatDate(p.updated)}</td>
@@ -31,6 +34,7 @@ export const TableComponent = ({packs}:TableComponentType) => {
                     </tr>
                 )
             })}
+            </tbody>
         </table>
     );
 };
