@@ -1,13 +1,14 @@
 import React from 'react';
+import s from '../../../f2-cards/c1-cards/c1-ui/PacksInfo.module.css';
 
 export const MainBar = () => {
     return (
         <>
-            <span>Name</span>
-            <span>Cards</span>
-            <span>Last Updated</span>
-            <span>Created by</span>
-            <span>Actions</span>
+            <span className={s.tableName}>Name</span>
+            <span className={s.tableCardsCount}>Cards</span>
+            <span className={s.tableUpdate}>Updated</span>
+            <span className={s.tableUserName}>Created by</span>
+            <span className={s.tableActions}>Actions</span>
         </>
     );
 };
