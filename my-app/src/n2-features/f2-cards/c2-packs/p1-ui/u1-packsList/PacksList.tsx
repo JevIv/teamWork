@@ -4,7 +4,7 @@ import {PacksInfo} from '../../../c1-cards/c1-ui/PacksInfo'
 import {useDispatch, useSelector} from 'react-redux';
 import {setPacksListTC, setUserId} from '../../p2-bll/packsList-reducer';
 import {AppRootStateType} from '../../../../../n1-main/m2-bll/store';
-import {Navigate} from 'react-router-dom';
+import {Navigate, useSearchParams} from 'react-router-dom';
 import {Range} from '../../../../../n0-common/c1-iu/Range/Range';
 import {UserType} from '../../../../../API/ProfileAPI/profileAPI';
 import {StatusType} from '../../../../../n1-main/m2-bll/s1-reducer/app-reducer';
@@ -19,14 +19,13 @@ export const PacksList = () => {
     const packName = useSelector<AppRootStateType, string>(state => state.packs.packName)
     const profile = useSelector<AppRootStateType, UserType>(state => state.profile.profileInfo as UserType);
     const userID = useSelector<AppRootStateType, string>(state => state.packs.user_id)
-    const status = useSelector<AppRootStateType, StatusType>(state => state.app.status);
-
+    const sortPacks = useSelector<AppRootStateType, string>(state => state.packs.sortPacks as string);
 
     const myAllButtons = ['My', 'All']
 
     useEffect(() => {
         dispatch(setPacksListTC())
-    }, [currentPage, min, max, packName, userID])
+    }, [currentPage, min, max, packName, userID, sortPacks])
 
     const setOptionHandler = (value: string) => {
         if (value === 'My') {
@@ -56,11 +55,7 @@ export const PacksList = () => {
             </div>
             <div className={style.packList}>
                 <h3>Packs list</h3>
-                {
-                    status === 'loading'
-                        ? <ProgressBar/>
-                        : <PacksInfo hidden={false}/>
-                }
+                <PacksInfo hidden={false}/>
             </div>
         </div>
     );

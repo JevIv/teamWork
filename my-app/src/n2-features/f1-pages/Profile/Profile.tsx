@@ -3,7 +3,7 @@ import style from './ProfileStyles.module.css'
 import {UserInfo} from './ProfileComponents/UserInfo';
 import {useDispatch, useSelector} from 'react-redux';
 import {UserType} from '../../../API/ProfileAPI/profileAPI';
-import {Navigate, useNavigate} from 'react-router-dom';
+import {Navigate, useNavigate, useParams, useSearchParams} from 'react-router-dom';
 import {Range} from '../../../n0-common/c1-iu/Range/Range';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {setPacksListTC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
@@ -23,15 +23,19 @@ export const Profile = () => {
     const min = useSelector<AppRootStateType, number>(state => state.packs.min);
     const max = useSelector<AppRootStateType, number>(state => state.packs.max);
     const packName = useSelector<AppRootStateType, string>(state => state.packs.packName);
-    const status = useSelector<AppRootStateType, StatusType>(state => state.app.status);
+    const sortPacks = useSelector<AppRootStateType, string>(state => state.packs.sortPacks as string);
+
+    const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
+        setSearchParams({user_id: profile._id, sortPacks: sortPacks})
         dispatch(setPacksListTC({user_id: profile._id}, 'profile'))
     }, [currentPage, min, max, packName])
 
     if (!initialized) {
         return <Navigate to="/login"/>
     }
+
 
     return (
         <div className={style.container}>
@@ -58,11 +62,7 @@ export const Profile = () => {
                 }}>Packs Name
                 </button>
                 <h3>My Pack List</h3>
-                {
-                    status === 'loading'
-                        ? <ProgressBar/>
-                        : <PacksInfo hidden={true}/>
-                }
+                <PacksInfo hidden={true}/>
 
             </div>
         </div>

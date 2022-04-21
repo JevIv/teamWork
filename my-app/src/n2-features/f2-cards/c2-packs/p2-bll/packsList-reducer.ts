@@ -14,7 +14,7 @@ type InitialStateType = {
     packName: string
     min: number
     max: number
-    sortPacks?: string | null
+    sortPacks: string | null
     user_id: string
 
 }
@@ -51,6 +51,8 @@ export const packsListReducer = (state: InitialStateType = initialState, action:
             return {...state, page: action.page}
         case 'SET_USER_ID':
             return {...state, user_id: action.userId}
+        case 'SET_SORT':
+            return {...state, sortPacks: action.sortOption}
         default:
             return state
     }
@@ -65,6 +67,7 @@ type ActionsPacklistType = SetPacksListAcType
     | SetMinMaxType
     | SetPageAcType
     | SetUserIdType
+    | SetSortType
 
 type SetPacksListAcType = ReturnType<typeof setPacksList>
 type SetSearchAcType = ReturnType<typeof setSearchAC>
@@ -73,6 +76,7 @@ type SetCurrentPageType = ReturnType<typeof setCurrentPage>
 type SetMinMaxType = ReturnType<typeof setMinMax>
 type SetPageAcType = ReturnType<typeof setPageAC>
 type SetUserIdType = ReturnType<typeof setUserId>
+type SetSortType = ReturnType<typeof setSort>
 
 export const setPacksList = (packsList: CardPacksType[]) => ({type: 'packsList/SET_PACKLIST', packsList}) as const
 export const setSearchAC = (packName: string) => ({type: 'packsList/SET_SEARCH', packName}) as const
@@ -81,13 +85,16 @@ export const setCurrentPage = (currentPage: number) => ({type: 'packsList/SET_CU
 export const setMinMax = (value: number[]) => ({type: 'packsList/SET_MIN_MAX', value}) as const
 export const setPageAC = (page: number) => ({type: 'SET_PAGE', page}) as const
 export const setUserId = (userId: string) => ({type: 'SET_USER_ID', userId}) as const
+export const setSort = (sortOption: string) => ({type: 'SET_SORT', sortOption}) as const
 
 //Thunks
 
 export const setPacksListTC = (params?: Partial<GetParamsType>, location?: string) => (dispatch: Dispatch, getState: () => AppRootStateType) => {
 
     const allPacksList = getState().packs;
+
     dispatch(setStatus('loading'))
+
     packsListAPI.getAllPacks({
         packName: allPacksList.packName,
         page: allPacksList.page,

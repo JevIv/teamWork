@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from '../../../c1-cards/c1-ui/PacksInfo.module.css';
 import dayjs from 'dayjs';
 import {CardPacksType} from '../../p3-dal/packsListAPI';
+import {useDispatch, useSelector} from 'react-redux';
+import {setPacksListTC, setSort} from '../../p2-bll/packsList-reducer';
+import {AppRootStateType} from '../../../../../n1-main/m2-bll/store';
 
 type TableComponentType = {
     packs: CardPacksType[]
@@ -11,12 +14,16 @@ export const TableComponent = ({packs}:TableComponentType) => {
 
     const formatDate = (date: string): string => dayjs(date).format('DD.MM.YYYY')
 
+    const onClickHandler = () => {
+       alert('hey')
+    }
+
     return (
         <table className={s.tableStyle}>
             <thead>
             <tr>
                 <td>Name</td>
-                <td>Cards</td>
+                <td onClick={onClickHandler}>Cards</td>
                 <td>Updated</td>
                 <td>Created</td>
                 <td>Actions</td>

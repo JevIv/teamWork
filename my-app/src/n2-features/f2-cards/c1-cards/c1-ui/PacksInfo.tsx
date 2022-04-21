@@ -6,6 +6,8 @@ import {PaginationComponent} from '../../../../n0-common/c1-iu/Pagination/Pagina
 import {Search} from '../../../f1-pages/Search/Search';
 import {TableComponent} from '../../c2-packs/p1-ui/u1-packsList/TableComponent';
 import {Button} from '../../../../n0-common/c1-iu/button/Button';
+import {StatusType} from '../../../../n1-main/m2-bll/s1-reducer/app-reducer';
+import {ProgressBar} from '../../../../n0-common/c1-iu/PrgressBar/ProgressBar';
 
 type PacksInfoType = {
     hidden?: boolean
@@ -18,6 +20,7 @@ export const PacksInfo = ({hidden}:PacksInfoType) => {
 
     const packsTotalCount = useSelector<AppRootStateType, number>(state => state.packs.cardPacksTotalCount)
     const currentPage = useSelector<AppRootStateType, number>(state => state.packs.page)
+    const status = useSelector<AppRootStateType, StatusType>(state => state.app.status);
 
     const addNewPack = ()=> {
         alert('clicked')
@@ -29,12 +32,20 @@ export const PacksInfo = ({hidden}:PacksInfoType) => {
             <div>
                 <Search/>
             </div>
-            <TableComponent packs={packs}/>
-            <div>
+
+            {
+                status === 'loading'
+                    ? <ProgressBar/>
+                    :<>
+                    <TableComponent packs={packs}/>
+                <div>
                 <PaginationComponent packsTotalCount={packsTotalCount}
-                                     pageCount={pageCount}
-                                     currentPage={currentPage}/>
-            </div>
+                pageCount={pageCount}
+                currentPage={currentPage}/>
+                </div>
+                    </>
+            }
+
         </>
     );
 }
