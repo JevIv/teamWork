@@ -4,14 +4,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import {useDispatch} from 'react-redux';
 import {setSearchAC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
 
-// export const Search = () => {
-//     const dispatch = useDispatch()
-//const searchQuery = useSelector<AppRootStateType, boolean>(state => state.login.searchQuery)
-
-// type SearchPropsType = {
-//     setSearchValue: (searchValue: string) => void
-// }
-
 export const Search = () => {
     const dispatch = useDispatch()
 
@@ -29,8 +21,6 @@ export const Search = () => {
     const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const targetValue = (e.currentTarget.value).trim()
         setSearch(targetValue)
-        // props.setSearchValue(searchValue.trim())
-        // dispatch(setSearchAC(targetValue))
     }
 
     return (
@@ -41,7 +31,6 @@ export const Search = () => {
                         <FormGroup>
                             <TextField
                                 size="small"
-                                sx={{width: '52vh'}}
                                 type="text"
                                 value={searchValue}
                                 onChange={onchangeHandler}

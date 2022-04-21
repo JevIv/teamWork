@@ -9,7 +9,7 @@ type TableComponentType = {
 
 export const TableComponent = ({packs}:TableComponentType) => {
 
-    const formatDate = (date: string): string => dayjs(date).format('DD-MM-YYYY')
+    const formatDate = (date: string): string => dayjs(date).format('DD.MM.YYYY')
 
     return (
         <table className={s.tableStyle}>

@@ -5,9 +5,13 @@ import {CardPacksType} from '../../c2-packs/p3-dal/packsListAPI';
 import {PaginationComponent} from '../../../../n0-common/c1-iu/Pagination/PaginationComponent';
 import {Search} from '../../../f1-pages/Search/Search';
 import {TableComponent} from '../../c2-packs/p1-ui/u1-packsList/TableComponent';
+import {Button} from '../../../../n0-common/c1-iu/button/Button';
 
+type PacksInfoType = {
+    hidden?: boolean
+}
 
-export const PacksInfo = () => {
+export const PacksInfo = ({hidden}:PacksInfoType) => {
 
     const packs = useSelector<AppRootStateType, CardPacksType[]>(state => state.packs.cardPacks)
     const pageCount = useSelector<AppRootStateType, number>(state => state.packs.pageCount)
@@ -15,10 +19,14 @@ export const PacksInfo = () => {
     const packsTotalCount = useSelector<AppRootStateType, number>(state => state.packs.cardPacksTotalCount)
     const currentPage = useSelector<AppRootStateType, number>(state => state.packs.page)
 
+    const addNewPack = ()=> {
+        alert('clicked')
+    }
+
     return (
         <>
-            <div style={{margin: '0px 48px 0 48px'}}>
-                {/*Style у input и сам Input здесь временный*/}
+            <Button onClick={addNewPack} name={'Add new pack'} hidden={hidden}/>
+            <div>
                 <Search/>
             </div>
             <TableComponent packs={packs}/>

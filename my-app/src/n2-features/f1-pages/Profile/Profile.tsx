@@ -9,6 +9,9 @@ import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {setPacksListTC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
 import {PATH} from '../../../n1-main/m1-ui/routes/Pages';
 import {PacksInfo} from '../../f2-cards/c1-cards/c1-ui/PacksInfo';
+import CircularProgress from '@mui/material/CircularProgress';
+import {StatusType} from '../../../n1-main/m2-bll/s1-reducer/app-reducer';
+import {ProgressBar} from '../../../n0-common/c1-iu/PrgressBar/ProgressBar';
 
 export const Profile = () => {
     let navigate = useNavigate();
@@ -20,18 +23,14 @@ export const Profile = () => {
     const min = useSelector<AppRootStateType, number>(state => state.packs.min);
     const max = useSelector<AppRootStateType, number>(state => state.packs.max);
     const packName = useSelector<AppRootStateType, string>(state => state.packs.packName);
-    const userID = useSelector<AppRootStateType, string>(state => state.packs.user_id)
+    const status = useSelector<AppRootStateType, StatusType>(state => state.app.status);
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(setPacksListTC({user_id: profile._id}, 'profile'))
-    },[currentPage, min, max, packName ])
-
-    // const setSearchValue = useCallback((SearchPacksValue: string) => {
-    //     dispatch(setSearchAC(SearchPacksValue))
-    // }, [dispatch])
+    }, [currentPage, min, max, packName])
 
     if (!initialized) {
-        return <Navigate to='/login'/>
+        return <Navigate to="/login"/>
     }
 
     return (
@@ -50,10 +49,21 @@ export const Profile = () => {
                 </div>
             </div>
             <div className={style.packList}>
-                <button onClick={() => {navigate('/packslist')}}>Packs list</button>
-                <button onClick={()=>{navigate(PATH.PACK_NAME)}}>Packs Name</button>
+                <button onClick={() => {
+                    navigate('/packslist')
+                }}>Packs list
+                </button>
+                <button onClick={() => {
+                    navigate(PATH.PACK_NAME)
+                }}>Packs Name
+                </button>
                 <h3>My Pack List</h3>
-                <PacksInfo />
+                {
+                    status === 'loading'
+                        ? <ProgressBar/>
+                        : <PacksInfo hidden={true}/>
+                }
+
             </div>
         </div>
     );

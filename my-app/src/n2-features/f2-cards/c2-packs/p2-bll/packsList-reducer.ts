@@ -1,6 +1,7 @@
 import {CardPacksType, GetParamsType, packsListAPI} from '../p3-dal/packsListAPI';
 import {Dispatch} from 'redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
+import {setIsLoading, setStatus} from '../../../../n1-main/m2-bll/s1-reducer/app-reducer';
 
 
 type InitialStateType = {
@@ -86,8 +87,7 @@ export const setUserId = (userId: string) => ({type: 'SET_USER_ID', userId}) as 
 export const setPacksListTC = (params?: Partial<GetParamsType>, location?: string) => (dispatch: Dispatch, getState: () => AppRootStateType) => {
 
     const allPacksList = getState().packs;
-    const cardPacks = allPacksList.cardPacks;
-
+    dispatch(setStatus('loading'))
     packsListAPI.getAllPacks({
         packName: allPacksList.packName,
         page: allPacksList.page,
@@ -102,13 +102,6 @@ export const setPacksListTC = (params?: Partial<GetParamsType>, location?: strin
             dispatch(setPacksList(res.cardPacks))
             dispatch(setPacksTotalCount(res.cardPacksTotalCount))
             dispatch(setCurrentPage(res.page))
-        })
-}
-
-export const setMyAllPacks = (userId: string) => (dispatch: any)=>{
-    packsListAPI.getAllPacks({user_id: userId})
-        .then(res => {
-            // dispatch(setPacksListTC({user_id: userId}))
-            // dispatch(setUserId(userId))
+            dispatch(setStatus('idle'))
         })
 }
