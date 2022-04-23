@@ -1,3 +1,71 @@
-.activePage{
-    font-weight: bold;
+/*.tableName {*/
+/*    flex-basis: 20%;*/
+/*}*/
+
+/*.tableCardsCount{*/
+/*    flex-basis: 10%;*/
+/*}*/
+
+/*.tableUpdate{*/
+/*    flex-basis:20%*/
+/*}*/
+
+/*.tableUserName{*/
+/*    flex-basis: 20%*/
+/*}*/
+
+/*.tableActions{*/
+/*    flex-basis: 30%;*/
+
+/*}*/
+
+.tableStyle {
+    border: 1px solid black;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns:minmax(170px, 2.33fr)
+                          minmax(50px, 0.99fr)
+                          minmax(150px, 1.33fr)
+                          minmax(150px, 1.33fr)
+                          minmax(150px, 2.33fr);
 }
+thead,
+tbody,
+tr {
+    display: contents;
+}
+
+th,
+td {
+    padding: 10px;
+    overflow: hidden ;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: white;
+    text-align: left;
+    font-weight: normal;
+    font-size: 1.1rem;
+    color: white;
+}
+
+th:last-child {
+    border: 1px;
+}
+
+td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #111111;
+}
+
+tr:nth-child(even) td {
+    background: rgba(234, 234, 248, 0.7);
+}
+
+

@@ -24,7 +24,7 @@ export const PATH = {
 export type PagesType = {
     _id: number;
     title: string;
-    path?: string;
+    path: string;
     params?: string;
     exact?: boolean;
     page: ReactNode;
@@ -36,8 +36,9 @@ export const pages: PagesType[] = [
     {_id:2, title:"register", path: PATH.REGISTER, exact: true, page: <Registration/>},
     {_id:3, title:"forgot", path: PATH.FORGOT, exact: true, page: <input/>},
     {_id:4, title:"set-pass", path: PATH.SET_PASS, params:"/:token", exact: true, page: <SetPassword/>},
-    {_id:5, title:"profile", path: PATH.PROFILE, params:"/:id" ,exact: true, page: <Profile/>},
-    {_id:6, title:"error",exact: true, page: <PageNotFound/>},
+    {_id:5, title:"profile", path: PATH.PROFILE,exact: true, page: <Profile/>},
+
+    {_id:6, title:"error",exact: true, path: '*', page: <PageNotFound/>},
     //Седьмой будет для packs_list
 
     // {_id:8, title: "pack-name", path: PATH.PACK_NAME, page: <PackName/>}

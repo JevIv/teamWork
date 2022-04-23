@@ -4,7 +4,7 @@ export const packsListAPI = {
     getAllPacks(params: Partial<GetParamsType> = {pageCount: 8}) {
         return instance.get<PacksListResponseType>('/cards/pack', {params})
             .then(res=> res.data)
-    }
+    },
 }
 
 export type GetParamsType = {
@@ -15,6 +15,7 @@ export type GetParamsType = {
     page: number
     pageCount: number
     user_id: string
+    packName: string
 }
 
 export type PacksListResponseType = {

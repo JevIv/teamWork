@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Slider from '@mui/material/Slider';
 import Box from '@mui/material/Box';
-import {setMinMax} from '../../../n2-features/f2-cards/c2-packs/p2-bll/packsList-reducer';
+import {setMinMax, setSearchAC} from '../../../n2-features/f2-cards/c2-packs/p2-bll/packsList-reducer';
 import {useDispatch} from 'react-redux';
 
 type RangeType = {
@@ -14,6 +14,14 @@ export const Range = ({min, max}: RangeType) => {
 
     const [value, setValue] = React.useState<number[]>([min, max]);
 
+    useEffect(()=> {
+        let time = setTimeout(()=> {
+            dispatch(setMinMax(value as number[]))}, 1000)
+        return ()=> {
+            clearTimeout(time)
+        }
+    },[value])
+
     function valuetext(value: number) {
         return `${value}`;
     }
@@ -23,8 +31,7 @@ export const Range = ({min, max}: RangeType) => {
     };
 
     const handleOnChangeCommitted = (event: React.SyntheticEvent | Event, value: number | Array<number>) => {
-        dispatch(setMinMax(value as number[]))
-        console.log(value)
+        setValue(value as number[])
     }
 
     return (

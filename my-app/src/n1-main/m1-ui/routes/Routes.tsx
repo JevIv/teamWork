@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { PageNotFound } from "../../../n2-features/f1-pages/404page/Error404";
 import { Login } from "../../../n2-features/f1-pages/Login/Login";
 import { Profile } from "../../../n2-features/f1-pages/Profile/Profile";
-import { pages, PagesType } from "./Pages";
+import {pages, PagesType, PATH} from './Pages';
 import {EditProfile} from '../../../n2-features/f1-pages/Profile/EditProfile/EditProfile';
 import {PacksList} from '../../../n2-features/f2-cards/c2-packs/p1-ui/u1-packsList/PacksList';
 import { PackName } from "../../../n2-features/f2-cards/c1-cards/c1-ui/CardsList";
@@ -12,7 +12,7 @@ import { PackName } from "../../../n2-features/f2-cards/c1-cards/c1-ui/CardsList
 const  RoutesPagesList = pages.map((page: PagesType) =>{
     return (<Route 
         key={'route-' + page._id}
-        path = {page.path || ''} 
+        path = {page.path}
         element = {page.page}
     />)
 })

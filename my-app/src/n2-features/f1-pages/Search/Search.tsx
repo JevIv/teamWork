@@ -1,54 +1,56 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {FormControl, FormGroup, Grid, InputAdornment, TextField} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import {useSelector} from 'react-redux';
-import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 
-// export const Search = () => {
-//     const dispatch = useDispatch()
-    //const searchQuery = useSelector<AppRootStateType, boolean>(state => state.login.searchQuery)
+import {useDispatch} from 'react-redux';
+import {setSearchAC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
 
-type SearchPropsType = {
-    setSearchValue: (searchValue: string) => void
-}
 
-export const Search = (props: SearchPropsType) => {
+export const Search = () => {
+    const dispatch = useDispatch()
 
-    const packName = useSelector<AppRootStateType, string>(state => state.packs.packName)
+    const [searchValue, setSearch] = useState('');
 
-    const [searchValue, setSearch] = useState(packName);
+    useEffect(()=> {
+        let time = setTimeout(()=> {
+            dispatch(setSearchAC(searchValue))}, 1000)
+        return ()=> {
+            clearTimeout(time)
+        }
+    },[searchValue])
+
 
     const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.currentTarget.value)
-        props.setSearchValue(searchValue.trim())
-        console.log(searchValue)
+        const targetValue = (e.currentTarget.value).trim()
+        setSearch(targetValue)
+
     }
+
     return (
         <>
-            <Grid container={true} direction={"column"} alignItems={"center"}>
-                    <form >
-                        <FormControl >
-                            <FormGroup>
-                                <TextField
-                                    size='small'
-                                    sx={{ width: '52vh' }}
-                                    type="text"
-                                    value={searchValue}
-                                    onChange={onchangeHandler}
-                                    placeholder="Search..."
-                                    margin="normal"
-                                    variant="outlined"
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <SearchIcon/>
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </FormGroup>
-                        </FormControl>
-                    </form>
+            <Grid container={true} direction={'column'} alignItems={'center'}>
+                <form>
+                    <FormControl>
+                        <FormGroup>
+                            <TextField
+                                size="small"
+                                type="text"
+                                value={searchValue}
+                                onChange={onchangeHandler}
+                                placeholder="Search..."
+                                margin="normal"
+                                variant="outlined"
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon/>
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        </FormGroup>
+                    </FormControl>
+                </form>
             </Grid>
         </>
     );
