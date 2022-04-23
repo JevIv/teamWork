@@ -96,6 +96,7 @@ export const setPacksListTC = (params?: Partial<GetParamsType>, location?: strin
     dispatch(setStatus('loading'))
 
     packsListAPI.getAllPacks({
+
         packName: allPacksList.packName,
         page: allPacksList.page,
         pageCount: allPacksList.pageCount,

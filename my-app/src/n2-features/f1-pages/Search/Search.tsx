@@ -1,8 +1,10 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import {FormControl, FormGroup, Grid, InputAdornment, TextField} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+
 import {useDispatch} from 'react-redux';
 import {setSearchAC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
+
 
 export const Search = () => {
     const dispatch = useDispatch()
@@ -21,6 +23,7 @@ export const Search = () => {
     const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const targetValue = (e.currentTarget.value).trim()
         setSearch(targetValue)
+
     }
 
     return (

@@ -21,16 +21,19 @@ export const Profile = () => {
     const initialized = useSelector<AppRootStateType, boolean>(state => state.login.isAuth);
     const currentPage = useSelector<AppRootStateType, number>(state => state.packs.page);
     const min = useSelector<AppRootStateType, number>(state => state.packs.min);
+
     const max = useSelector<AppRootStateType, number>(state => state.packs.max);
     const packName = useSelector<AppRootStateType, string>(state => state.packs.packName);
     const sortPacks = useSelector<AppRootStateType, string | null>(state => state.packs.sortPacks);
 
     const [searchParams, setSearchParams] = useSearchParams();
 
+
     useEffect(() => {
         setSearchParams({user_id: profile._id})
         dispatch(setPacksListTC({user_id: profile._id}, 'profile'))
     }, [currentPage, min, max, packName, sortPacks])
+
 
     if (!initialized) {
         return <Navigate to="/login"/>
