@@ -85,7 +85,7 @@ export const setCurrentPage = (currentPage: number) => ({type: 'packsList/SET_CU
 export const setMinMax = (value: number[]) => ({type: 'packsList/SET_MIN_MAX', value}) as const
 export const setPageAC = (page: number) => ({type: 'SET_PAGE', page}) as const
 export const setUserId = (userId: string) => ({type: 'SET_USER_ID', userId}) as const
-export const setSort = (sortOption: string) => ({type: 'SET_SORT', sortOption}) as const
+export const setSort = (sortOption: string | null) => ({type: 'SET_SORT', sortOption}) as const
 
 //Thunks
 
@@ -101,7 +101,7 @@ export const setPacksListTC = (params?: Partial<GetParamsType>, location?: strin
         pageCount: allPacksList.pageCount,
         min: allPacksList.min,
         max: allPacksList.max,
-        sortPacks: params?.sortPacks,
+        sortPacks: allPacksList.sortPacks as string,
         user_id: location === 'profile' ? params?.user_id : allPacksList.user_id
 
     })
@@ -109,6 +109,11 @@ export const setPacksListTC = (params?: Partial<GetParamsType>, location?: strin
             dispatch(setPacksList(res.cardPacks))
             dispatch(setPacksTotalCount(res.cardPacksTotalCount))
             dispatch(setCurrentPage(res.page))
+        })
+        .catch(e => {
+            console.log(e)
+        })
+        .finally(()=>{
             dispatch(setStatus('idle'))
         })
 }

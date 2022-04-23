@@ -13,16 +13,15 @@ type PacksInfoType = {
     hidden?: boolean
 }
 
-export const PacksInfo = ({hidden}:PacksInfoType) => {
+export const PacksInfo = ({hidden}: PacksInfoType) => {
 
     const packs = useSelector<AppRootStateType, CardPacksType[]>(state => state.packs.cardPacks)
     const pageCount = useSelector<AppRootStateType, number>(state => state.packs.pageCount)
 
     const packsTotalCount = useSelector<AppRootStateType, number>(state => state.packs.cardPacksTotalCount)
     const currentPage = useSelector<AppRootStateType, number>(state => state.packs.page)
-    const status = useSelector<AppRootStateType, StatusType>(state => state.app.status);
 
-    const addNewPack = ()=> {
+    const addNewPack = () => {
         alert('clicked')
     }
 
@@ -32,19 +31,10 @@ export const PacksInfo = ({hidden}:PacksInfoType) => {
             <div>
                 <Search/>
             </div>
-
-            {
-                status === 'loading'
-                    ? <ProgressBar/>
-                    :<>
-                    <TableComponent packs={packs}/>
-                <div>
-                <PaginationComponent packsTotalCount={packsTotalCount}
-                pageCount={pageCount}
-                currentPage={currentPage}/>
-                </div>
-                    </>
-            }
+            <TableComponent packs={packs}/>
+            <PaginationComponent packsTotalCount={packsTotalCount}
+                                 pageCount={pageCount}
+                                 currentPage={currentPage}/>
 
         </>
     );

@@ -5,17 +5,36 @@ import {CardPacksType} from '../../p3-dal/packsListAPI';
 import {useDispatch, useSelector} from 'react-redux';
 import {setPacksListTC, setSort} from '../../p2-bll/packsList-reducer';
 import {AppRootStateType} from '../../../../../n1-main/m2-bll/store';
+import {StatusType} from '../../../../../n1-main/m2-bll/s1-reducer/app-reducer';
+import {ProgressBar} from '../../../../../n0-common/c1-iu/PrgressBar/ProgressBar';
 
 type TableComponentType = {
     packs: CardPacksType[]
 }
 
-export const TableComponent = ({packs}:TableComponentType) => {
+export const TableComponent = ({packs}: TableComponentType) => {
+    const dispatch = useDispatch()
+
+    const status = useSelector<AppRootStateType, StatusType>(state => state.app.status);
+    const sortPacks = useSelector<AppRootStateType, string | null>(state => state.packs.sortPacks);
 
     const formatDate = (date: string): string => dayjs(date).format('DD.MM.YYYY')
 
+    const sortParams = {
+        sortLow: '0updated',
+        sortHigh: '1updated'
+    }
+
     const onClickHandler = () => {
-       alert('hey')
+        if(sortPacks === null){
+            return dispatch(setSort(sortParams.sortLow))
+        }
+        if(sortPacks === '0updated'){
+            return dispatch(setSort(sortParams.sortHigh))
+        }
+        if(sortPacks === '1updated'){
+            return dispatch(setSort(sortParams.sortLow))
+        }
     }
 
     return (
@@ -30,19 +49,28 @@ export const TableComponent = ({packs}:TableComponentType) => {
             </tr>
             </thead>
             <tbody>
-            {packs.map(p => {
-                return (
-                    <tr key={p._id}>
-                        <td>{p.name}</td>
-                        <td>{p.cardsCount}</td>
-                        <td>{formatDate(p.updated)}</td>
-                        <td>{p.user_name}</td>
-                        <td><button>Delete</button><button>Edit</button><button>Learn</button></td>
-                    </tr>
-                )
-            })}
+            {
+                status === 'loading'
+                    ? <ProgressBar/>
+                    : packs.map(p => {
+                            return (
+                                <tr key={p._id}>
+                                    <td>{p.name}</td>
+                                    <td>{p.cardsCount}</td>
+                                    <td>{formatDate(p.updated)}</td>
+                                    <td>{p.user_name}</td>
+                                    <td>
+                                        <button>Delete</button>
+                                        <button>Edit</button>
+                                        <button>Learn</button>
+                                    </td>
+                                </tr>
+                            )
+                        }
+                    )
+            }
             </tbody>
         </table>
-    );
+       );
 };
 
