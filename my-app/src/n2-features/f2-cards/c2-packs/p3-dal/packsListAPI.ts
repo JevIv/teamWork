@@ -5,6 +5,9 @@ export const packsListAPI = {
         return instance.get<PacksListResponseType>('/cards/pack', {params})
             .then(res=> res.data)
     },
+    deletePack(packId: string){
+        return instance.delete(`/cards/pack/${packId}`)
+    }
 }
 
 export type GetParamsType = {
@@ -41,7 +44,7 @@ export type CardPacksType = {
     type: string,
     rating: number,
     created: string,
-    updated: string,
+    updated: number,
     more_id: string,
     __v: number
 }

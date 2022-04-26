@@ -2,6 +2,7 @@ import {CardPacksType, GetParamsType, packsListAPI} from '../p3-dal/packsListAPI
 import {Dispatch} from 'redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import {setIsLoading, setStatus} from '../../../../n1-main/m2-bll/s1-reducer/app-reducer';
+import {ThunkAction} from 'redux-thunk';
 
 
 type InitialStateType = {
@@ -25,7 +26,7 @@ const initialState: InitialStateType = {
     maxCardsCount: 0,
     minCardsCount: 0,
     page: 1,
-    pageCount: 8,
+    pageCount: 7,
     packName: '',
     min: 0,
     max: 100,
@@ -114,7 +115,12 @@ export const setPacksListTC = (params?: Partial<GetParamsType>, location?: strin
         .catch(e => {
             console.log(e)
         })
-        .finally(()=>{
+        .finally(() => {
             dispatch(setStatus('idle'))
         })
+}
+
+export const deletePack = (packId: string): ThunkAction<void, AppRootStateType, unknown, ActionsPacklistType> => async (dispatch: any) => {
+    const res = await packsListAPI.deletePack(packId)
+    dispatch(setPacksListTC())
 }

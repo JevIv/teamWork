@@ -4,10 +4,12 @@ import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
 import {CardPacksType} from '../../c2-packs/p3-dal/packsListAPI';
 import {PaginationComponent} from '../../../../n0-common/c1-iu/Pagination/PaginationComponent';
 import {Search} from '../../../f1-pages/Search/Search';
-import {TableComponent} from '../../c2-packs/p1-ui/u1-packsList/TableComponent';
+// import {TableComponent} from '../../c2-packs/p1-ui/u1-packsList/TableComponent';
 import {Button} from '../../../../n0-common/c1-iu/button/Button';
 import {StatusType} from '../../../../n1-main/m2-bll/s1-reducer/app-reducer';
 import {ProgressBar} from '../../../../n0-common/c1-iu/PrgressBar/ProgressBar';
+import {TableComponentMui} from '../../c2-packs/p1-ui/u1-packsList/TableComponentMUI';
+import {Table} from '../../c2-packs/p1-ui/u1-packsList/Table';
 
 type PacksInfoType = {
     hidden?: boolean
@@ -31,7 +33,8 @@ export const PacksInfo = ({hidden}: PacksInfoType) => {
             <div>
                 <Search/>
             </div>
-            <TableComponent packs={packs}/>
+            {/*<TableComponent packs={packs}/>*/}
+            <Table/>
             <PaginationComponent packsTotalCount={packsTotalCount}
                                  pageCount={pageCount}
                                  currentPage={currentPage}/>
