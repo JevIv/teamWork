@@ -121,6 +121,21 @@ export const setPacksListTC = (params?: Partial<GetParamsType>, location?: strin
 }
 
 export const deletePack = (packId: string): ThunkAction<void, AppRootStateType, unknown, ActionsPacklistType> => async (dispatch: any) => {
-    const res = await packsListAPI.deletePack(packId)
-    dispatch(setPacksListTC())
+    try{
+        const res = await packsListAPI.deletePack(packId)
+        dispatch(setPacksListTC())
+    }
+    catch (e) {
+        console.log(e)
+    }
+}
+
+export const addNewPackTC = (name: string): ThunkAction<void, AppRootStateType, unknown, ActionsPacklistType>  => async (dispatch: any) => {
+    try{
+        const res = await packsListAPI.addNewPack(name)
+        dispatch(setPacksListTC())
+    }
+    catch (e) {
+        console.log(e)
+    }
 }

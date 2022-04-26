@@ -11,17 +11,21 @@ import {AppRootStateType} from '../../../../../n1-main/m2-bll/store';
 import dayjs from 'dayjs';
 import {CardPacksType} from '../../p3-dal/packsListAPI';
 import {Button, ButtonGroup} from '@material-ui/core';
+import {useNavigate} from 'react-router-dom';
+import {PATH} from '../../../../../n1-main/m1-ui/routes/Pages';
 
-type TableComponentMuiType ={
-    sort: (value: string)=> void
+type TableComponentMuiType = {
+    sort: (value: string) => void
 }
 
 export const TableComponentMui = ({sort}: TableComponentMuiType) => {
+    const navigate = useNavigate();
 
     const packs = useSelector<AppRootStateType, CardPacksType[]>(state => state.packs.cardPacks)
 
     const buttons = <ButtonGroup color="primary" aria-label="small outlined button group" size="small">
-        <Button onClick={() => {
+        <Button onClick={(event) => {
+            console.log(event)
         }}>Delete</Button>
         <Button onClick={() => {
         }}>Edit</Button>
@@ -55,9 +59,13 @@ export const TableComponentMui = ({sort}: TableComponentMuiType) => {
             label: 'Created',
             minWidth: 150,
             align: 'right',
-            onClick: ()=>{}
+            onClick: () => {
+            }
         },
-        {id: 'actions', label: 'Actions', align: 'center', minWidth: 200, onClick: ()=>{}}
+        {
+            id: 'actions', label: 'Actions', align: 'center', minWidth: 200, onClick: () => {
+            }
+        }
     ];
 
     interface Data {
@@ -85,7 +93,7 @@ export const TableComponentMui = ({sort}: TableComponentMuiType) => {
         r.cardsCount,
         new Date(r.updated).getTime(),
         r.user_name, buttons, r._id))
-    console.log('but',buttons)
+
     return (
         <>
             <Paper sx={{width: '710px', margin: '0 auto', overflow: ''}} elevation={3}>
@@ -98,8 +106,9 @@ export const TableComponentMui = ({sort}: TableComponentMuiType) => {
                                                align={column.align}
                                                style={{minWidth: column.minWidth}}
                                                size={'medium'}
-                                               onClick= {() => column.onClick(column.id)}>
+                                               onClick={() => column.onClick(column.id)}>
                                         {column.label}
+
 
                                     </TableCell>
                                 ))}
@@ -113,24 +122,14 @@ export const TableComponentMui = ({sort}: TableComponentMuiType) => {
                                             {columns.map((column, i) => {
                                                 const value = row[column.id];
                                                 return (
-                                                    <>
-                                                        <TableCell key={column.id} align={column.align}
-                                                                   size={'small'}
-                                                                   sx={{cursor: 'pointer'}}>
+                                                    <TableCell key={column.id} align={column.align}
+                                                               size={'small'}
+                                                               sx={{cursor: 'pointer'}}
+                                                               onClick={() => navigate(PATH.PACK_NAME)}>
 
-                                                            {column.format && typeof value === 'number' ? column.format(value) : value}
+                                                        {column.format && typeof value === 'number' ? column.format(value) : value}
 
-                                                        </TableCell>
-                                                        {/*{i === 4 && <ButtonGroup color="primary" aria-label="small outlined button group" size="small">*/}
-                                                        {/*    <Button onClick={() => {*/}
-                                                        {/*    }}>Delete</Button>*/}
-                                                        {/*    <Button onClick={() => {*/}
-                                                        {/*    }}>Edit</Button>*/}
-                                                        {/*    <Button onClick={() => {*/}
-                                                        {/*    }}>Learn</Button>*/}
-                                                        {/*</ButtonGroup>}*/}
-                                                    </>
-                                                );
+                                                    </TableCell>)
                                             })}
                                         </TableRow>
                                     );
@@ -142,3 +141,20 @@ export const TableComponentMui = ({sort}: TableComponentMuiType) => {
         </>
     );
 };
+
+{/*{i === 4 && <ButtonGroup color="primary" aria-label="small outlined button group" size="small">*/
+}
+{/*    <Button onClick={() => {*/
+}
+{/*    }}>Delete</Button>*/
+}
+{/*    <Button onClick={() => {*/
+}
+{/*    }}>Edit</Button>*/
+}
+{/*    <Button onClick={() => {*/
+}
+{/*    }}>Learn</Button>*/
+}
+{/*</ButtonGroup>}*/
+}
