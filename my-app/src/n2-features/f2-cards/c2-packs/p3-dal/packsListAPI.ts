@@ -6,7 +6,7 @@ export const packsListAPI = {
             .then(res=> res.data)
     },
     deletePack(packId: string){
-        return instance.delete(`/cards/pack/${packId}`)
+        return instance.delete(`/cards/pack/?id=${packId}`)
     },
     addNewPack(name: string){
         return instance.post('/cards/pack',{cardsPack: {name}})

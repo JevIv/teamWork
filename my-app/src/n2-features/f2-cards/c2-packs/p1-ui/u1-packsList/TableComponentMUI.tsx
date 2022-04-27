@@ -13,25 +13,40 @@ import {CardPacksType} from '../../p3-dal/packsListAPI';
 import {Button, ButtonGroup} from '@material-ui/core';
 import {useNavigate} from 'react-router-dom';
 import {PATH} from '../../../../../n1-main/m1-ui/routes/Pages';
+import {UserType} from '../../../../../API/ProfileAPI/profileAPI';
+
+type ButtonsType = {
+    packId: string
+    deleteHandler: (packId: string)=> void
+    disable: boolean
+}
+
+
+const Buttons = ({packId, deleteHandler, disable}: ButtonsType) => {
+
+    return (
+        <ButtonGroup color="primary" aria-label="small outlined button group" size="small">
+            <Button disabled={disable} onClick={() => {
+                deleteHandler(packId)
+            }}>Delete</Button>
+            <Button disabled={disable}  onClick={() => {
+            }}>Edit</Button>
+            <Button onClick={() => {
+            }}>Learn</Button>
+        </ButtonGroup>
+    )
+}
 
 type TableComponentMuiType = {
     sort: (value: string) => void
+    deleteHandler: (packId: string)=> void
+    profileId: string
 }
 
-export const TableComponentMui = ({sort}: TableComponentMuiType) => {
+export const TableComponentMui = ({sort, deleteHandler, profileId}: TableComponentMuiType) => {
     const navigate = useNavigate();
 
     const packs = useSelector<AppRootStateType, CardPacksType[]>(state => state.packs.cardPacks)
-
-    const buttons = <ButtonGroup color="primary" aria-label="small outlined button group" size="small">
-        <Button onClick={(event) => {
-            console.log(event)
-        }}>Delete</Button>
-        <Button onClick={() => {
-        }}>Edit</Button>
-        <Button onClick={() => {
-        }}>Learn</Button>
-    </ButtonGroup>
 
 
     interface Column {
@@ -89,10 +104,23 @@ export const TableComponentMui = ({sort}: TableComponentMuiType) => {
         return {name, cardsCount, updated, user_name, actions, _id};
     }
 
-    const rows = packs.map(r => createData(r.name,
-        r.cardsCount,
-        new Date(r.updated).getTime(),
-        r.user_name, buttons, r._id))
+    const rows = packs.map(r => {
+
+        const isDisabled = r.user_id !== profileId
+
+        return createData(
+            r.name,
+            r.cardsCount,
+            new Date(r.updated).getTime(),
+            r.user_name,
+            <Buttons
+                deleteHandler={()=>{deleteHandler(r._id)}}
+                disable={isDisabled}
+                packId={r._id}
+            />
+            , r._id)
+    }
+    )
 
     return (
         <>
@@ -102,15 +130,15 @@ export const TableComponentMui = ({sort}: TableComponentMuiType) => {
                         <TableHead>
                             <TableRow>
                                 {columns.map((column, i) => (
+
                                     <TableCell key={column.id + i}
                                                align={column.align}
                                                style={{minWidth: column.minWidth}}
                                                size={'medium'}
                                                onClick={() => column.onClick(column.id)}>
                                         {column.label}
-
-
                                     </TableCell>
+
                                 ))}
                             </TableRow>
                         </TableHead>
@@ -118,19 +146,23 @@ export const TableComponentMui = ({sort}: TableComponentMuiType) => {
                             {rows
                                 .map((row, i) => {
                                     return (
+
                                         <TableRow hover role="checkbox" tabIndex={0} key={row.name + i}>
                                             {columns.map((column, i) => {
                                                 const value = row[column.id];
                                                 return (
+
                                                     <TableCell key={column.id} align={column.align}
                                                                size={'small'}
                                                                sx={{cursor: 'pointer'}}
-                                                               onClick={() => navigate(PATH.PACK_NAME)}>
-
+                                                               onClick={() => {
+                                                                   column.id !== 'actions' && navigate(PATH.PACK_NAME)
+                                                               }
+                                                               }>
                                                         {column.format && typeof value === 'number' ? column.format(value) : value}
-
                                                     </TableCell>)
                                             })}
+
                                         </TableRow>
                                     );
                                 })}
