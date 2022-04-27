@@ -10,7 +10,12 @@ export const packsListAPI = {
     },
     addNewPack(name: string){
         return instance.post('/cards/pack',{cardsPack: {name}})
+    },
+    editPack(packId: string, newName: string){
+
+        return instance.put('/cards/pack', {cardsPack: {_id: packId, name:newName}})
     }
+
 }
 
 export type GetParamsType = {

@@ -10,7 +10,7 @@ import {StatusType} from '../../../../n1-main/m2-bll/s1-reducer/app-reducer';
 import {ProgressBar} from '../../../../n0-common/c1-iu/PrgressBar/ProgressBar';
 import {TableComponentMui} from '../../c2-packs/p1-ui/u1-packsList/TableComponentMUI';
 import {Table} from '../../c2-packs/p1-ui/u1-packsList/Table';
-import {addNewPackTC} from '../../c2-packs/p2-bll/packsList-reducer';
+import {addNewPackTC, setPageAC} from '../../c2-packs/p2-bll/packsList-reducer';
 
 type PacksInfoType = {
     hidden?: boolean
@@ -28,6 +28,7 @@ export const PacksInfo = ({hidden}: PacksInfoType) => {
 
     const addNewPack = () => {
         dispatch(addNewPackTC('namename2'))
+        dispatch(setPageAC(1))
     }
 
     return (

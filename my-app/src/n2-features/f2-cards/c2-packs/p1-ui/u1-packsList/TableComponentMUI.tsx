@@ -6,30 +6,32 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../../../../n1-main/m2-bll/store';
 import dayjs from 'dayjs';
 import {CardPacksType} from '../../p3-dal/packsListAPI';
 import {Button, ButtonGroup} from '@material-ui/core';
 import {useNavigate} from 'react-router-dom';
 import {PATH} from '../../../../../n1-main/m1-ui/routes/Pages';
-import {UserType} from '../../../../../API/ProfileAPI/profileAPI';
+import {editNewNameTC} from '../../p2-bll/packsList-reducer';
 
 type ButtonsType = {
     packId: string
-    deleteHandler: (packId: string)=> void
+    deleteHandler: (packId: string) => void
     disable: boolean
 }
 
 
 const Buttons = ({packId, deleteHandler, disable}: ButtonsType) => {
+    const dispatch = useDispatch()
 
     return (
         <ButtonGroup color="primary" aria-label="small outlined button group" size="small">
             <Button disabled={disable} onClick={() => {
                 deleteHandler(packId)
             }}>Delete</Button>
-            <Button disabled={disable}  onClick={() => {
+            <Button disabled={disable} onClick={() => {
+                dispatch(editNewNameTC(packId, '76y32'))
             }}>Edit</Button>
             <Button onClick={() => {
             }}>Learn</Button>
@@ -39,7 +41,7 @@ const Buttons = ({packId, deleteHandler, disable}: ButtonsType) => {
 
 type TableComponentMuiType = {
     sort: (value: string) => void
-    deleteHandler: (packId: string)=> void
+    deleteHandler: (packId: string) => void
     profileId: string
 }
 
@@ -106,20 +108,22 @@ export const TableComponentMui = ({sort, deleteHandler, profileId}: TableCompone
 
     const rows = packs.map(r => {
 
-        const isDisabled = r.user_id !== profileId
+            const isDisabled = r.user_id !== profileId
 
-        return createData(
-            r.name,
-            r.cardsCount,
-            new Date(r.updated).getTime(),
-            r.user_name,
-            <Buttons
-                deleteHandler={()=>{deleteHandler(r._id)}}
-                disable={isDisabled}
-                packId={r._id}
-            />
-            , r._id)
-    }
+            return createData(
+                r.name,
+                r.cardsCount,
+                new Date(r.updated).getTime(),
+                r.user_name,
+                <Buttons
+                    deleteHandler={() => {
+                        deleteHandler(r._id)
+                    }}
+                    disable={isDisabled}
+                    packId={r._id}
+                />
+                , r._id)
+        }
     )
 
     return (

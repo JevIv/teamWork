@@ -54,6 +54,8 @@ export const packsListReducer = (state: InitialStateType = initialState, action:
             return {...state, user_id: action.userId}
         case 'SET_SORT':
             return {...state, sortPacks: action.sortOption}
+        case 'SET_NEW_PACK_NAME':
+            return {...state, cardPacks: state.cardPacks.map(cards => cards._id === action.packId ? {...cards, name: action.newName}: cards)}
         default:
             return state
     }
@@ -69,6 +71,7 @@ type ActionsPacklistType = SetPacksListAcType
     | SetPageAcType
     | SetUserIdType
     | SetSortType
+    | SetNewPackNameType
 
 type SetPacksListAcType = ReturnType<typeof setPacksList>
 type SetSearchAcType = ReturnType<typeof setSearchAC>
@@ -78,6 +81,7 @@ type SetMinMaxType = ReturnType<typeof setMinMax>
 type SetPageAcType = ReturnType<typeof setPageAC>
 type SetUserIdType = ReturnType<typeof setUserId>
 type SetSortType = ReturnType<typeof setSort>
+type SetNewPackNameType = ReturnType<typeof setNewPackName>
 
 export const setPacksList = (packsList: CardPacksType[]) => ({type: 'packsList/SET_PACKLIST', packsList}) as const
 export const setSearchAC = (packName: string) => ({type: 'packsList/SET_SEARCH', packName}) as const
@@ -87,6 +91,11 @@ export const setMinMax = (value: number[]) => ({type: 'packsList/SET_MIN_MAX', v
 export const setPageAC = (page: number) => ({type: 'SET_PAGE', page}) as const
 export const setUserId = (userId: string) => ({type: 'SET_USER_ID', userId}) as const
 export const setSort = (sortOption: string | null) => ({type: 'SET_SORT', sortOption}) as const
+export const setNewPackName = (packId: string, newName: string) => ({
+    type: 'SET_NEW_PACK_NAME',
+    packId,
+    newName
+}) as const
 
 //Thunks
 
@@ -121,21 +130,31 @@ export const setPacksListTC = (params?: Partial<GetParamsType>, location?: strin
 }
 
 export const deletePack = (packId: string, id: string, location?: string): ThunkAction<void, AppRootStateType, unknown, ActionsPacklistType> => async (dispatch) => {
-    try{
+    try {
         const res = await packsListAPI.deletePack(packId)
         dispatch(setPacksListTC({user_id: id}, location))
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e)
     }
 }
 
-export const addNewPackTC = (name: string): ThunkAction<void, AppRootStateType, unknown, ActionsPacklistType>  => async (dispatch) => {
-    try{
+export const addNewPackTC = (name: string): ThunkAction<void, AppRootStateType, unknown, ActionsPacklistType> => async (dispatch) => {
+    try {
         const res = await packsListAPI.addNewPack(name)
         dispatch(setPacksListTC())
+    } catch (e) {
+        console.log(e)
     }
-    catch (e) {
+}
+
+export const editNewNameTC = (packId: string, newName: string): ThunkAction<void, AppRootStateType, unknown, ActionsPacklistType> => async (dispatch) => {
+    try {
+        const res = await packsListAPI.editPack(packId, newName)
+        //пока остается в таком виде
+        // dispatch(setPacksListTC())
+        dispatch(setNewPackName(res.data.updatedCardsPack._id,res.data.updatedCardsPack.name ))
+
+    } catch (e) {
         console.log(e)
     }
 }
