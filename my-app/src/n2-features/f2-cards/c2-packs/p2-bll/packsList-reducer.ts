@@ -1,7 +1,7 @@
 import {CardPacksType, GetParamsType, packsListAPI} from '../p3-dal/packsListAPI';
 import {Dispatch} from 'redux';
 import {AppRootStateType} from '../../../../n1-main/m2-bll/store';
-import {setIsLoading, setStatus} from '../../../../n1-main/m2-bll/s1-reducer/app-reducer';
+import {setStatus} from '../../../../n1-main/m2-bll/s1-reducer/app-reducer';
 import {ThunkAction} from 'redux-thunk';
 
 
@@ -55,7 +55,12 @@ export const packsListReducer = (state: InitialStateType = initialState, action:
         case 'SET_SORT':
             return {...state, sortPacks: action.sortOption}
         case 'SET_NEW_PACK_NAME':
-            return {...state, cardPacks: state.cardPacks.map(cards => cards._id === action.packId ? {...cards, name: action.newName}: cards)}
+            return {...state,
+                cardPacks: state.cardPacks.map(cards => cards._id === action.packId ? {
+                    ...cards,
+                    name: action.newName
+                } : cards)
+            }
         default:
             return state
     }
@@ -152,7 +157,7 @@ export const editNewNameTC = (packId: string, newName: string): ThunkAction<void
         const res = await packsListAPI.editPack(packId, newName)
         //пока остается в таком виде
         // dispatch(setPacksListTC())
-        dispatch(setNewPackName(res.data.updatedCardsPack._id,res.data.updatedCardsPack.name ))
+        dispatch(setNewPackName(res.data.updatedCardsPack._id, res.data.updatedCardsPack.name))
 
     } catch (e) {
         console.log(e)

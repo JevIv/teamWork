@@ -1,6 +1,4 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { AppRootStateType } from "../../../../n1-main/m2-bll/store";
+import React from 'react';
 
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -10,10 +8,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { PATH } from "../../../../n1-main/m1-ui/routes/Pages";
-import { useNavigate } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import {PATH} from '../../../../n1-main/m1-ui/routes/Pages';
+import {useNavigate} from 'react-router-dom';
+import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 

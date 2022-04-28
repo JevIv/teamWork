@@ -3,15 +3,12 @@ import style from './ProfileStyles.module.css'
 import {UserInfo} from './ProfileComponents/UserInfo';
 import {useDispatch, useSelector} from 'react-redux';
 import {UserType} from '../../../API/ProfileAPI/profileAPI';
-import {Navigate, useNavigate, useParams, useSearchParams} from 'react-router-dom';
+import {Navigate, useNavigate, useSearchParams} from 'react-router-dom';
 import {Range} from '../../../n0-common/c1-iu/Range/Range';
 import {AppRootStateType} from '../../../n1-main/m2-bll/store';
 import {setPacksListTC} from '../../f2-cards/c2-packs/p2-bll/packsList-reducer';
 import {PATH} from '../../../n1-main/m1-ui/routes/Pages';
 import {PacksInfo} from '../../f2-cards/c1-cards/c1-ui/PacksInfo';
-import CircularProgress from '@mui/material/CircularProgress';
-import {StatusType} from '../../../n1-main/m2-bll/s1-reducer/app-reducer';
-import {ProgressBar} from '../../../n0-common/c1-iu/PrgressBar/ProgressBar';
 
 export const Profile = () => {
     let navigate = useNavigate();

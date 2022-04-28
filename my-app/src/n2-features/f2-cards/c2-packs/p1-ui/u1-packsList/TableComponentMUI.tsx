@@ -14,27 +14,35 @@ import {Button, ButtonGroup} from '@material-ui/core';
 import {useNavigate} from 'react-router-dom';
 import {PATH} from '../../../../../n1-main/m1-ui/routes/Pages';
 import {editNewNameTC} from '../../p2-bll/packsList-reducer';
+import {setActivateModal} from '../../../../../n1-main/m2-bll/s1-reducer/app-reducer';
 
 type ButtonsType = {
     packId: string
     deleteHandler: (packId: string) => void
     disable: boolean
+    helperFunc: (pId: string, modal: string) => void
 }
 
 
-const Buttons = ({packId, deleteHandler, disable}: ButtonsType) => {
+const Buttons = ({packId, deleteHandler, disable, helperFunc}: ButtonsType) => {
     const dispatch = useDispatch()
 
     return (
         <ButtonGroup color="primary" aria-label="small outlined button group" size="small">
+
             <Button disabled={disable} onClick={() => {
-                deleteHandler(packId)
+                // deleteHandler(packId)
+                // dispatch(setActivateModal(true))
+                helperFunc(packId, 'delete')
             }}>Delete</Button>
+
             <Button disabled={disable} onClick={() => {
                 dispatch(editNewNameTC(packId, '76y32'))
             }}>Edit</Button>
+
             <Button onClick={() => {
             }}>Learn</Button>
+
         </ButtonGroup>
     )
 }
@@ -43,9 +51,10 @@ type TableComponentMuiType = {
     sort: (value: string) => void
     deleteHandler: (packId: string) => void
     profileId: string
+    helperFunc: (pId: string, modal: string) => void
 }
 
-export const TableComponentMui = ({sort, deleteHandler, profileId}: TableComponentMuiType) => {
+export const TableComponentMui = ({sort, deleteHandler, profileId, helperFunc}: TableComponentMuiType) => {
     const navigate = useNavigate();
 
     const packs = useSelector<AppRootStateType, CardPacksType[]>(state => state.packs.cardPacks)
@@ -119,6 +128,7 @@ export const TableComponentMui = ({sort, deleteHandler, profileId}: TableCompone
                     deleteHandler={() => {
                         deleteHandler(r._id)
                     }}
+                    helperFunc={helperFunc}
                     disable={isDisabled}
                     packId={r._id}
                 />
