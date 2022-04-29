@@ -7,6 +7,7 @@ import {RoutesFunc} from './routes/Routes';
 import {AppRootStateType} from '../m2-bll/store';
 import {authMe, logOut} from '../m2-bll/s1-reducer/login-reducer';
 import CircularProgress from '@mui/material/CircularProgress';
+import {Modal} from '../../n2-features/f2-modals/ModalWindow/Modal';
 
 
 function App() {

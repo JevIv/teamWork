@@ -7,10 +7,6 @@ import {AppRootStateType} from '../../../../../n1-main/m2-bll/store';
 import {Navigate, useSearchParams} from 'react-router-dom';
 import {Range} from '../../../../../n0-common/c1-iu/Range/Range';
 import {UserType} from '../../../../../API/ProfileAPI/profileAPI';
-import {StatusType} from '../../../../../n1-main/m2-bll/s1-reducer/app-reducer';
-import {ProgressBar} from '../../../../../n0-common/c1-iu/PrgressBar/ProgressBar';
-import {initializedSelect} from '../../../../../n0-common/Selectros/Selectors';
-import App from '../../../../../n1-main/m1-ui/App';
 
 export const PacksList = () => {
     const dispatch = useDispatch()
@@ -23,6 +19,8 @@ export const PacksList = () => {
     const userID = useSelector<AppRootStateType, string>(state => state.packs.user_id)
     const sortPacks = useSelector<AppRootStateType, string>(state => state.packs.sortPacks as string);
 
+    const [searchParams, setSearchParams] = useSearchParams()
+
     const myAllButtons = ['My', 'All']
 
     useEffect(() => {
@@ -31,9 +29,15 @@ export const PacksList = () => {
 
     const setOptionHandler = (value: string) => {
         if (value === 'My') {
+            setSearchParams({user_id: profile._id})
             dispatch(setUserId(profile._id))
-        } else
+        } else{
+            const searchParamObj = Object.fromEntries(searchParams)
+            delete searchParamObj.user_id
+            setSearchParams({...searchParamObj})
             dispatch(setUserId(''))
+        }
+
     }
 
     if (!initialized) {
