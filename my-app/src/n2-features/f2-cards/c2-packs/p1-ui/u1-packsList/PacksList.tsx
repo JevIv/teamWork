@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import style from '../../../../f1-pages/Profile/ProfileStyles.module.css'
-import {PacksInfo} from '../../../c1-cards/c1-ui/PacksInfo'
+import style from '../../../../f1-pages/Profile/ProfileStyles.module.css';
+import {PacksInfo} from '../../../c1-cards/c1-ui/PacksInfo';
 import {useDispatch, useSelector} from 'react-redux';
 import {setPacksListTC, setUserId} from '../../p2-bll/packsList-reducer';
 import {AppRootStateType} from '../../../../../n1-main/m2-bll/store';
